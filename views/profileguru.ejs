@@ -1,0 +1,301 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Profile Guru</title>
+		<link rel="stylesheet" type="text/css" href="/css/profileguruCSS.css" />
+	</head>
+	<body>
+		<%- include('header.js') %>
+		<div id="container">
+			<section id="profilegroup">
+				<img
+					src="/images/profileicon2.png"
+					alt="Profile Icon 2"
+					id="profileicon2" />
+				<button type="button" id="btnpilihfoto">Pilih Foto</button>
+				<hr id="line1" />
+				<a href="" id="datadiri">Data Diri</a>
+				<a href="" id="ubahpassword">Ubah Password</a>
+				<a href="" id="tingkatpend">Tingkat Pendidikan</a>
+				<div id="logoutgroup">
+					<a href="/">
+						<img
+							src="/images/logouticon.png"
+							alt="LogOut Icon"
+							id="logouticon" />
+					</a>
+					<a href="/" id="logout">Logout</a>
+				</div>
+			</section>
+			<section id="menugroup">
+				<p id="text1">Data Diri</p>
+				<p id="text2">
+					Kelola data diri anda untuk mengontrol, melindungi dan mengamankan
+					akun
+				</p>
+				<hr id="line2" />
+				<form id="formdatadiri">
+					<div id="namagroup">
+						<p id="nama">Nama</p>
+						<input type="text" id="inputnama" value="<%= name %>" />
+					</div>
+					<div id="emailgroup">
+						<p id="email">Email</p>
+						<input type="text" id="inputemail" value="<%= email %>" />
+					</div>
+					<div id="notelpgroup">
+						<p id="notlp">Nomor Telepon</p>
+						<input type="text" id="inputnotlp" />
+					</div>
+					<div id="jeniskgroup">
+						<p id="jenisk">Jenis Kelamin</p>
+						<div class="gender-options">
+							<label>
+								<input type="radio" name="choice" value="option1" />
+								Laki-laki
+							</label>
+							<label>
+								<input type="radio" name="choice" value="option2" />
+								Perempuan
+							</label>
+							<label>
+								<input type="radio" name="choice" value="option3" />
+								Lainnya
+							</label>
+						</div>
+					</div>
+					<div id="tgllahirgroup">
+						<p id="tgllahir">Tanggal Lahir</p>
+						<select name="day"></select>
+						<select name="month"></select>
+						<select name="year"></select>
+					</div>
+					<div id="alamatgroup">
+						<p id="alamat">Alamat</p>
+						<select name="Provinsi">
+							<option value="" disabled selected>Provinsi</option>
+						</select>
+						<select name="Kota">
+							<option value="" disabled selected>Kota</option>
+						</select>
+						<select name="Kecamatan">
+							<option value="" disabled selected>Kecamatan</option>
+						</select>
+						<select name="Kelurahan">
+							<option value="" disabled selected>Kelurahan</option>
+						</select>
+					</div>
+					<button type="button" id="btnsimpan">Simpan</button>
+				</form>
+			</section>
+			<section id="ubahpassgroup">
+				<p id="text1">Ubah Password</p>
+				<p id="text2">Kelola password akun anda dengan kode yang kuat</p>
+				<hr id="line2" />
+				<form id="formubahpass">
+					<div id="passlamagroup">
+						<p id="passlama">Password Lama</p>
+						<div class="password-wrapper">
+							<input
+								type="password"
+								id="inputpasslama"
+								class="password-input" />
+							<span
+								class="toggle-password"
+								onclick="togglePasswordVisibility('inputpasslama')"></span>
+						</div>
+					</div>
+					<div id="passbarugroup">
+						<p id="passbaru">Password Baru</p>
+						<div class="password-wrapper">
+							<input
+								type="password"
+								id="inputpassbaru"
+								class="password-input" />
+							<span
+								class="toggle-password"
+								onclick="togglePasswordVisibility('inputpassbaru')"></span>
+						</div>
+					</div>
+					<div id="konpassbarugroup">
+						<p id="konpassbaru">Konfirmasi Password Baru</p>
+						<div class="password-wrapper">
+							<input
+								type="password"
+								id="inputkonpassbaru"
+								class="password-input" />
+							<span
+								class="toggle-password"
+								onclick="togglePasswordVisibility('inputkonpassbaru')"></span>
+						</div>
+					</div>
+					<button type="button" id="btnubahpass">Ubah Password</button>
+					<a href="#" id="lupapass" onclick="openPopup()">Lupa Password?</a>
+				</form>
+			</section>
+			<section id="tingkatpendgroup">
+				<p id="text1">Tingkat Pendidikan</p>
+				<p id="text2">
+					Pilih tingkat - tingkat pendidikan yang ingin anda ajar
+				</p>
+				<hr id="line2" />
+			</section>
+		</div>
+		<div class="popup-container" id="forgotPasswordPopup">
+			<div class="popup-box">
+				<h2>Lupa Password</h2>
+				<p>Masukan email anda untuk melakukan reset password</p>
+				<div class="input-group">
+					<input type="email" id="forgotPasswordEmail" />
+				</div>
+				<div class="button-group">
+					<button type="button" onclick="resetPassword()">
+						Reset Password
+					</button>
+					<button type="button" onclick="closePopup()">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script>
+	function initDoB(day_el, month_el, year_el) {
+		const months = [
+			"Januari",
+			"Februari",
+			"Maret",
+			"April",
+			"Mei",
+			"Juni",
+			"Juli",
+			"Agustus",
+			"September",
+			"Oktober",
+			"November",
+			"Desember",
+		];
+
+		let day = "";
+		for (let i = 1; i <= 31; i++) {
+			day += "<option>" + i + "</option>";
+		}
+		day_el.innerHTML = day;
+
+		let month = "";
+		for (let i = 0; i < months.length; i++) {
+			month += "<option>" + months[i] + "</option>";
+		}
+		month_el.innerHTML = month;
+
+		const current_year = new Date().getFullYear();
+		let year = "";
+		for (let i = current_year; i >= current_year - 80; i--) {
+			year += "<option>" + i + "</option>";
+		}
+		year_el.innerHTML = year;
+	}
+
+	(function () {
+		const day = document.querySelector('select[name="day"]');
+		const month = document.querySelector('select[name="month"]');
+		const year = document.querySelector('select[name="year"]');
+		document.addEventListener("DOMContentLoaded", function () {
+			initDoB(day, month, year);
+		});
+	})();
+
+	const datadiriLink = document.getElementById("datadiri");
+	const ubahpassLink = document.getElementById("ubahpassword");
+	const tingkatpendLink = document.getElementById("tingkatpend");
+	const menugroupSection = document.getElementById("menugroup");
+	const ubahpassSection = document.getElementById("ubahpassgroup");
+	const tingkatpendSection = document.getElementById("tingkatpendgroup");
+
+	datadiriLink.addEventListener("click", function (event) {
+		event.preventDefault();
+		menugroupSection.style.display = "block";
+		ubahpassSection.style.display = "none";
+		tingkatpendSection.style.display = "none";
+
+		datadiriLink.style.color = "#00A3FF";
+		ubahpassLink.style.color = "";
+		tingkatpendLink.style.color = "";
+	});
+
+	ubahpassLink.addEventListener("click", function (event) {
+		event.preventDefault();
+		menugroupSection.style.display = "none";
+		ubahpassSection.style.display = "block";
+		tingkatpendSection.style.display = "none";
+
+		datadiriLink.style.color = "";
+		ubahpassLink.style.color = "#00A3FF";
+		tingkatpendLink.style.color = "";
+	});
+
+	tingkatpendLink.addEventListener("click", function (event) {
+		event.preventDefault();
+		menugroupSection.style.display = "none";
+		ubahpassSection.style.display = "none";
+		tingkatpendSection.style.display = "block";
+
+		datadiriLink.style.color = "";
+		ubahpassLink.style.color = "";
+		tingkatpendLink.style.color = "#00A3FF";
+	});
+
+	document.addEventListener("DOMContentLoaded", function () {
+		datadiriLink.classList.add("active");
+
+		menugroupSection.style.display = "block";
+		ubahpassSection.style.display = "none";
+		tingkatpendSection.style.display = "none";
+
+		datadiriLink.style.color = "#00A3FF";
+		ubahpassLink.style.color = "";
+		tingkatpendLink.style.color = "";
+	});
+
+	function togglePasswordVisibility(inputId) {
+		const passwordInput = document.getElementById(inputId);
+		const toggleButton = passwordInput.nextElementSibling;
+		if (passwordInput.type === "password") {
+			passwordInput.type = "text";
+			toggleButton.style.backgroundImage = "url(/eyeiconshow)";
+		} else {
+			passwordInput.type = "password";
+			toggleButton.style.backgroundImage = "url(/eyeiconhide)";
+		}
+	}
+
+	document.addEventListener("DOMContentLoaded", function () {
+		const btnPilihFoto = document.getElementById("btnpilihfoto");
+		btnPilihFoto.addEventListener("click", function () {
+			const input = document.createElement("input");
+			input.type = "file";
+			input.accept = "image/*";
+			input.onchange = function (event) {
+				const file = event.target.files[0];
+				console.log("Selected file:", file);
+			};
+			input.click();
+		});
+	});
+
+	function openPopup() {
+		var popup = document.getElementById("forgotPasswordPopup");
+		popup.style.display = "flex";
+	}
+
+	function closePopup() {
+		var popup = document.getElementById("forgotPasswordPopup");
+		popup.style.display = "none";
+	}
+
+	function resetPassword() {
+		closePopup();
+	}
+</script>

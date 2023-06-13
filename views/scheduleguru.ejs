@@ -1,0 +1,390 @@
+<html>
+	<head>
+		<title>Schedule Guru</title>
+		<link rel="stylesheet" type="text/css" href="/css/schedulesiswaCSS.css" />
+	</head>
+	<body>
+		<%- include('header.ejs') %>
+		<div class="week-nav">
+			<a href="#" class="nav-btn" id="prev-week"
+				><img src="/images/previousweekicon.png"
+			/></a>
+			<a href="#" class="nav-btn" id="next-week"
+				><img src="/images/nextweekicon.png"
+			/></a>
+			<button id="create" onclick="openPopup()">Create</button>
+		</div>
+		<section id="tabel">
+			<table>
+				<tr>
+					<th id="jam">Jam</th>
+					<th class="hari"></th>
+					<th class="hari"></th>
+					<th class="hari"></th>
+					<th class="hari"></th>
+					<th class="hari"></th>
+					<th class="hari"></th>
+					<th class="hari"></th>
+				</tr>
+				<tr>
+					<td>07:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>08:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>09:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>10:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>11:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>12:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>13:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>14:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>15:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>16:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>17:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>18:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>19:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>20:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>21:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>22:00</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</section>
+		<!-- 
+            Pop-Up
+         -->
+		<div class="popup-container" id="createpopup">
+			<div class="popup-box">
+				<span class="icon-close">
+					<ion-icon name="close" onclick="closePopup()"></ion-icon>
+				</span>
+				<div id="harigroup">
+					<p id="hari">Hari</p>
+					<select name="hari">
+						<option>Senin</option>
+						<option>Selasa</option>
+						<option>Rabu</option>
+						<option>Kamis</option>
+						<option>Jumat</option>
+						<option>Sabtu</option>
+						<option>Minggu</option>
+					</select>
+				</div>
+				<div id="tglmulaigroup">
+					<p id="tglmulai">Tanggal Mulai</p>
+					<select name="day"></select>
+					<select name="month"></select>
+					<select name="year"></select>
+				</div>
+				<div id="tglSelesaigroup">
+					<p id="tglSelesai">Tanggal Selesai</p>
+					<select name="day2"></select>
+					<select name="month2"></select>
+					<select name="year2"></select>
+				</div>
+				<div id="jammulaigroup">
+					<p id="jammulai">Jam Mulai</p>
+					<select name="jammulai"></select>
+				</div>
+				<div id="durasigroup">
+					<p id="durasi">Durasi</p>
+					<select name="durasi">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+				<div class="button-group">
+					<button type="button" id="upload">Upload</button>
+				</div>
+			</div>
+		</div>
+		<script
+			type="module"
+			src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+		<script
+			nomodule
+			src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+	</body>
+</html>
+
+<script>
+	var currentDate = new Date();
+	var startDate = new Date(currentDate);
+	startDate.setDate(startDate.getDate() - startDate.getDay() + 1);
+
+	var dayElements = document.getElementsByClassName("hari");
+	for (var i = 0; i < dayElements.length; i++) {
+		dayElements[i].textContent = formatDate(startDate);
+		startDate.setDate(startDate.getDate() + 1);
+	}
+
+	document.getElementById("prev-week").addEventListener("click", function () {
+		startDate.setDate(startDate.getDate() - 7);
+		updateTable();
+	});
+
+	document.getElementById("next-week").addEventListener("click", function () {
+		startDate.setDate(startDate.getDate() + 7);
+		updateTable();
+	});
+
+	function formatDate(date) {
+		var options = {
+			weekday: "long",
+			month: "long",
+			day: "numeric",
+			year: "numeric",
+		};
+		return date.toLocaleDateString("id-ID", options);
+	}
+
+	function updateTable() {
+		var currentStartDate = new Date(startDate);
+		for (var i = 0; i < dayElements.length; i++) {
+			dayElements[i].textContent = formatDate(currentStartDate);
+			currentStartDate.setDate(currentStartDate.getDate() + 1);
+		}
+	}
+
+	function openPopup() {
+		var popup = document.getElementById("createpopup");
+		popup.style.display = "flex";
+	}
+
+	function closePopup() {
+		var popup = document.getElementById("createpopup");
+		popup.style.display = "none";
+	}
+
+	document.getElementById("upload").addEventListener("click", function () {
+		var selectedDay = document.querySelector('select[name="hari"]').value;
+		var selectedStartHour = document.querySelector(
+			'select[name="jammulai"]'
+		).value;
+		var selectedDuration = parseInt(
+			document.querySelector('select[name="durasi"]').value
+		);
+
+		var startHourIndex = Math.floor((parseInt(selectedStartHour) - 7) / 1); // Calculate the index of the start hour
+		var endHourIndex = startHourIndex + selectedDuration; // Calculate the index of the end hour
+
+		var tableRows = document.querySelectorAll("#tabel tr");
+		for (var i = startHourIndex; i < endHourIndex; i++) {
+			var currentRow = tableRows[i + 1]; // Start from index 1 to skip the header row
+			var cell = currentRow.cells.namedItem(selectedDay);
+			cell.style.backgroundColor = "black";
+		}
+
+		closePopup(); // Close the popup after updating the table
+	});
+	function initDoB(day_el, month_el, year_el) {
+		const months = [
+			"Januari",
+			"Februari",
+			"Maret",
+			"April",
+			"Mei",
+			"Juni",
+			"Juli",
+			"Agustus",
+			"September",
+			"Oktober",
+			"November",
+			"Desember",
+		];
+
+		let day = "";
+		for (let i = 1; i <= 31; i++) {
+			day += "<option>" + i + "</option>";
+		}
+		day_el.innerHTML = day;
+
+		let month = "";
+		for (let i = 0; i < months.length; i++) {
+			month += "<option>" + months[i] + "</option>";
+		}
+		month_el.innerHTML = month;
+
+		const current_year = new Date().getFullYear();
+		let year = "";
+		for (let i = current_year; i <= current_year + 5; i++) {
+			year += "<option>" + i + "</option>";
+		}
+		year_el.innerHTML = year;
+	}
+
+	(function () {
+		const day = document.querySelector('select[name="day"]');
+		const month = document.querySelector('select[name="month"]');
+		const year = document.querySelector('select[name="year"]');
+		document.addEventListener("DOMContentLoaded", function () {
+			initDoB(day, month, year);
+		});
+	})();
+
+	(function () {
+		const day = document.querySelector('select[name="day2"]');
+		const month = document.querySelector('select[name="month2"]');
+		const year = document.querySelector('select[name="year2"]');
+		document.addEventListener("DOMContentLoaded", function () {
+			initDoB(day, month, year);
+		});
+	})();
+
+	(function () {
+		const jammulai_el = document.querySelector('select[name="jammulai"]');
+		let hour = "";
+		for (let i = 7; i <= 20; i++) {
+			let formattedHour = i.toString().padStart(2, "0") + ":00";
+			hour += "<option>" + formattedHour + "</option>";
+		}
+		jammulai_el.innerHTML = hour;
+	})();
+
+	window.addEventListener("DOMContentLoaded", function () {
+		var tableRows = document.querySelectorAll("#tabel tr");
+		var targetCell = tableRows[1].cells[1]; // Select the second row (index 1) and the second cell (index 1)
+		targetCell.style.backgroundColor = "black";
+	});
+</script>

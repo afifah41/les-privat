@@ -1,0 +1,199 @@
+<html>
+	<head>
+		<title>Schedule Siswa</title>
+		<link rel="stylesheet" type="text/css" href="/css/schedulesiswaCSS.css" />
+		<style>
+			#timetable {
+				margin: 20px auto;
+				width: 80%;
+			}
+
+			table {
+				width: 100%;
+				border-collapse: collapse;
+			}
+
+			th {
+				background-color: #f2f2f2;
+				text-align: center;
+				padding: 10px;
+				font-weight: bold;
+			}
+
+			td {
+				text-align: center;
+				padding: 10px;
+				border: 1px solid #ccc;
+				cursor: pointer;
+			}
+
+			.timeslot {
+				background-color: #fff;
+			}
+
+			.event {
+				background-color: #ffc107;
+				color: #fff;
+				font-weight: bold;
+			}
+
+			/* Responsive styling */
+			@media screen and (max-width: 768px) {
+				th,
+				td {
+					padding: 5px;
+					font-size: 12px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<img src="/images/logo.png" alt="Ruang Kursus" id="logo" />
+			<a href="/homesiswa" id="home">Home</a>
+			<a href="/schedule" id="schedule">Schedule</a>
+			<a href="/findclass" id="findclass">Find Class</a>
+			<a href="/profilesiswa" id="proficon"
+				><img src="/images/profileicon.png" alt="Profile Icon" id="profileicon"
+			/></a>
+		</header>
+		<div id="timetable"></div>
+		<div id="date-navigation">
+			<button id="prev-week-btn">Previous Week</button>
+			<span id="current-week"></span>
+			<button id="next-week-btn">Next Week</button>
+		</div>
+
+		<script>
+			// JavaScript code to create timetable and add events dynamically
+
+			// Sample event data
+			var events = [];
+
+			var currentDate = new Date();
+			var startDate = new Date(currentDate);
+			startDate.setDate(startDate.getDate() - startDate.getDay() + 1);
+
+			// Function to create the timetable
+			function createTimetable() {
+				var timetable = document.getElementById("timetable");
+
+				// Create table element
+				var table = document.createElement("table");
+
+				// Create table header row
+				var headerRow = document.createElement("tr");
+				var daysOfWeek = [
+					"Monday",
+					"Tuesday",
+					"Wednesday",
+					"Thursday",
+					"Friday",
+					"Saturday",
+					"Sunday",
+				];
+
+				// Add days of the week as table headers
+				for (var i = 0; i < daysOfWeek.length; i++) {
+					var th = document.createElement("th");
+					th.textContent = daysOfWeek[i] + ", " + formatDate(startDate);
+					headerRow.appendChild(th);
+					startDate.setDate(startDate.getDate() + 1); // Increment the date for the next day
+				}
+
+				table.appendChild(headerRow);
+
+				// Create table rows and cells for each time slot
+				var timeSlots = [
+					"9:00 AM - 10:00 AM",
+					"10:00 AM - 11:00 AM",
+					"11:00 AM - 12:00 PM",
+					"12:00 PM - 1:00 PM",
+					"1:00 PM - 2:00 PM",
+					"2:00 PM - 3:00 PM",
+					"3:00 PM - 4:00 PM",
+					// Add more time slots as needed
+				];
+
+				for (var j = 0; j < timeSlots.length; j++) {
+					var row = document.createElement("tr");
+
+					for (var k = 0; k < daysOfWeek.length; k++) {
+						var cell = document.createElement("td");
+						cell.classList.add("timeslot");
+						cell.setAttribute("data-day", daysOfWeek[k]);
+						cell.setAttribute("data-time", timeSlots[j]);
+
+						row.appendChild(cell);
+					}
+
+					table.appendChild(row);
+				}
+
+				timetable.appendChild(table);
+			}
+
+			// Function to format the date in a desired format
+			function formatDate(date) {
+				var options = { weekday: "long", month: "long", day: "numeric" };
+				return date.toLocaleDateString("en-US", options);
+			}
+
+			// Function to update the current week display
+			function updateCurrentWeekDisplay() {
+				var currentWeekElement = document.getElementById("current-week");
+				currentWeekElement.textContent = formatDate(startDate);
+			}
+
+			// Function to go to the next week
+			function nextWeek() {
+				startDate.setDate(startDate.getDate() + 7);
+				clearTimetable();
+				createTimetable();
+				updateCurrentWeekDisplay();
+			}
+
+			// Function to go to the previous week
+			function prevWeek() {
+				startDate.setDate(startDate.getDate() - 7);
+				clearTimetable();
+				createTimetable();
+				updateCurrentWeekDisplay();
+			}
+
+			// Function to clear the timetable
+			function clearTimetable() {
+				var timetable = document.getElementById("timetable");
+				timetable.innerHTML = "";
+			}
+
+			// Create the timetable when the page loads
+			window.addEventListener("load", function () {
+				createTimetable();
+				updateCurrentWeekDisplay();
+
+				var nextWeekBtn = document.getElementById("next-week-btn");
+				var prevWeekBtn = document.getElementById("prev-week-btn");
+
+				nextWeekBtn.addEventListener("click", nextWeek);
+				prevWeekBtn.addEventListener("click", prevWeek);
+			});
+
+			// Add event listener to each cell for adding events
+			document.addEventListener("click", function (event) {
+				if (event.target.classList.contains("timeslot")) {
+					var day = event.target.getAttribute("data-day");
+					var time = event.target.getAttribute("data-time");
+					var title = prompt("Enter event title:");
+
+					if (title) {
+						var newEvent = { day: day, time: time, title: title };
+						events.push(newEvent);
+						event.target.textContent = title;
+						event.target.classList.add("event");
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

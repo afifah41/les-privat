@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Profile Siswa</title>
+		<link rel="stylesheet" type="text/css" href="/css/profilesiswaCSS.css" />
+	</head>
+	<body>
+		<header>
+			<img src="/images/logo.png" alt="Ruang Kursus" id="logo" />
+			<a href="/homesiswa" id="home">Home</a>
+			<a href="/schedulesiswa" id="schedule">Schedule</a>
+			<a href="/findclass" id="findclass">Find Class</a>
+			<img src="/images/profileicon.png" alt="Profile Icon" id="profileicon" />
+		</header>
+		<div id="container">
+			<section id="filter-group">
+				<div class="category"></div>
+				<div class="filter"></div>
+			</section>
+			<section id="sort-group"></section>
+			<section id="content-group"></section>
+		</div>
+		<div class="popup-container" id="forgotPasswordPopup">
+			<div class="popup-box">
+				<h2>Lupa Password</h2>
+				<p>Masukan email anda untuk melakukan reset password</p>
+				<div class="input-group">
+					<input type="email" id="forgotPasswordEmail" />
+				</div>
+				<div class="button-group">
+					<button type="button" onclick="resetPassword()">
+						Reset Password
+					</button>
+					<button type="button" onclick="closePopup()">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
