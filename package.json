@@ -1,0 +1,32 @@
+{
+	"name": "les-privat-v2",
+	"version": "1.0.0",
+	"description": "new version of les-privat",
+	"main": "server.js",
+	"type": "module",
+	"scripts": {
+		"start": "nodemon ./src/server"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/afifah41/les-privat.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/afifah41/les-privat/issues"
+	},
+	"homepage": "https://github.com/afifah41/les-privat#readme",
+	"dependencies": {
+		"crypto": "^1.0.1",
+		"ejs": "^3.1.9",
+		"express": "^4.18.2",
+		"express-ejs-layouts": "^2.5.1",
+		"express-session": "^1.17.3",
+		"express-validator": "^7.0.1",
+		"ip": "^1.1.8",
+		"jsonwebtoken": "^9.0.0",
+		"mysql": "^2.18.1",
+		"nodemon": "^2.0.22"
+	}
+}

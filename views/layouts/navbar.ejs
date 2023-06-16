@@ -1,0 +1,19 @@
+<header>
+	<img src="/images/logo.png" alt="Ruang Kursus" id="logo" />
+	<% if (typeof user !== 'undefined') { %>
+	<a href="/home" id="home">Home</a>
+	<% if (user.role == 'guru') { %>
+	<a href="/myclass" id="schedule">My Class</a>
+	<a href="/schedule" id="findclass">Schedule</a>
+	<% } else if (user.role == 'siswa') { %>
+	<a href="/schedule" id="schedule">Schedule</a>
+	<a href="/findclass" id="findclass">Find Class</a>
+	<% } %>
+	<a href="/profile" id="proficon">
+		<img src="/images/profileicon.png" alt="Profile Icon" id="profileicon" />
+	</a>
+	<% } else { %>
+	<a href="/home" id="home-index">Home</a>
+	<button class="btn-login-popup">Login</button>
+	<% } %>
+</header>

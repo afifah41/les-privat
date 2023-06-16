@@ -1,0 +1,206 @@
+<div id="container-profile">
+	<section id="profilegroup">
+		<img
+			src="/images/profileicon2.png"
+			alt="Profile Icon 2"
+			id="profileicon2" />
+		<button type="button" id="btnpilihfoto">Pilih Foto</button>
+		<hr id="line1" />
+		<a href="" id="datadiri">Data Diri</a>
+		<a href="" id="ubahpassword">Ubah Password</a>
+		<a href="" id="tingkatpend">Tingkat Pendidikan</a>
+		<% let x = (user.role == 'guru') ? '-guru' : ''; %>
+
+		<div id="logoutgroup<%= x %>">
+			<a href="/logout">
+				<img src="/images/logouticon.png" alt="LogOut Icon" id="logouticon" />
+			</a>
+			<a href="/logout" id="logout">Logout</a>
+		</div>
+	</section>
+	<section id="menugroup<%= x %>">
+		<p id="text1-profile">Data Diri</p>
+		<p id="text2-profile">
+			Kelola data diri anda untuk mengontrol, melindungi dan mengamankan akun
+		</p>
+		<hr id="line2" />
+		<form id="formdatadiri" action="/editdatadiriguru" method="post">
+			<div id="namagroup">
+				<p id="nama">Nama</p>
+				<input type="text" id="inputnama" name="nama" />
+			</div>
+			<div id="emailgroup">
+				<p id="email">Email</p>
+				<input type="text" id="inputemail" name="email" />
+			</div>
+			<div id="notelpgroup">
+				<p id="notlp">Nomor Telepon</p>
+				<input type="text" id="inputnotlp" name="notlp" />
+			</div>
+			<div id="jeniskgroup">
+				<p id="jenisk">Jenis Kelamin</p>
+				<div class="gender-options">
+					<label>
+						<input type="radio" name="choice" value="option1" />
+						Laki-laki
+					</label>
+					<label>
+						<input type="radio" name="choice" value="option2" />
+						Perempuan
+					</label>
+					<label>
+						<input type="radio" name="choice" value="option3" />
+						Lainnya
+					</label>
+				</div>
+			</div>
+			<div id="tgllahirgroup">
+				<p id="tgllahir">Tanggal Lahir</p>
+				<select name="day"></select>
+				<select name="month"></select>
+				<select name="year"></select>
+			</div>
+			<div id="alamatgroup">
+				<p id="alamat">Alamat</p>
+				<select name="Provinsi">
+					<option value="" disabled selected>Provinsi</option>
+				</select>
+				<select name="Kota">
+					<option value="" disabled selected>Kota</option>
+				</select>
+				<select name="Kecamatan">
+					<option value="" disabled selected>Kecamatan</option>
+				</select>
+				<select name="Kelurahan">
+					<option value="" disabled selected>Kelurahan</option>
+				</select>
+			</div>
+			<% if (user.role === 'guru') { %>
+			<div id="mapelgroup">
+				<p id="mapel">Mata Pelajaran</p>
+				<select name="mapel">
+					<option value="" disabled selected>Mata Pelajaran</option>
+				</select>
+			</div>
+			<% } %>
+			<div id="btngroup<%= x %>">
+				<button type="button" id="btnedit<%= x %>">Edit</button>
+				<button type="submit" id="btnsimpan<%= x %>">Simpan</button>
+			</div>
+		</form>
+	</section>
+	<section id="ubahpassgroup">
+		<p id="text1-profile">Ubah Password</p>
+		<p id="text2-profile">Kelola password akun anda dengan kode yang kuat</p>
+		<hr id="line2" />
+		<form id="formubahpass" action="/ubahpassguru" method="post">
+			<div id="passlamagroup">
+				<p id="passlama">Password Lama</p>
+				<div class="password-wrapper">
+					<input type="password" id="inputpasslama" class="password-input" />
+					<span
+						class="toggle-password"
+						onclick="togglePasswordVisibility('inputpasslama')"></span>
+				</div>
+			</div>
+			<div id="passbarugroup">
+				<p id="passbaru">Password Baru</p>
+				<div class="password-wrapper">
+					<input type="password" id="inputpassbaru" class="password-input" />
+					<span
+						class="toggle-password"
+						onclick="togglePasswordVisibility('inputpassbaru')"></span>
+				</div>
+			</div>
+			<div id="konpassbarugroup">
+				<p id="konpassbaru">Konfirmasi Password Baru</p>
+				<div class="password-wrapper">
+					<input type="password" id="inputkonpassbaru" class="password-input" />
+					<span
+						class="toggle-password"
+						onclick="togglePasswordVisibility('inputkonpassbaru')"></span>
+				</div>
+			</div>
+			<button type="submit" id="btnubahpass">Ubah Password</button>
+			<a href="#" id="lupapass" onclick="openPopup()">Lupa Password?</a>
+		</form>
+	</section>
+	<% if (user.role == 'guru') { %>
+	<section id="tingkatpendgroup">
+		<p id="text1-profile">Tingkat Pendidikan</p>
+		<p id="text2-profile">
+			Pilih tingkat - tingkat pendidikan yang ingin anda ajar
+		</p>
+		<hr id="line2" />
+		<form id="formtingkatpend" action="/tingkatpend" method="post">
+			<div id="tingkat1-6">
+				<div id="tingkatgroup">
+					<button type="button" id="tingkat">1</button>
+					<input type="text" id="biaya" placeholder="Rp." />
+				</div>
+				<div id="tingkatgroup">
+					<button type="button" id="tingkat">2</button>
+					<input type="text" id="biaya" placeholder="Rp." />
+				</div>
+				<div id="tingkatgroup">
+					<button type="button" id="tingkat">3</button>
+					<input type="text" id="biaya" placeholder="Rp." />
+				</div>
+				<div id="tingkatgroup">
+					<button type="button" id="tingkat">4</button>
+					<input type="text" id="biaya" placeholder="Rp." />
+				</div>
+				<div id="tingkatgroup">
+					<button type="button" id="tingkat">5</button>
+					<input type="text" id="biaya" placeholder="Rp." />
+				</div>
+				<div id="tingkatgroup">
+					<button type="button" id="tingkat">6</button>
+					<input type="text" id="biaya" placeholder="Rp." />
+				</div>
+			</div>
+			<div id="tingkat7-12">
+				<div id="tingkatgroup">
+					<button type="button" id="tingkat">7</button>
+					<input type="text" id="biaya" placeholder="Rp." />
+				</div>
+				<div id="tingkatgroup">
+					<button type="button" id="tingkat">8</button>
+					<input type="text" id="biaya" placeholder="Rp." />
+				</div>
+				<div id="tingkatgroup">
+					<button type="button" id="tingkat">9</button>
+					<input type="text" id="biaya" placeholder="Rp." />
+				</div>
+				<div id="tingkatgroup">
+					<button type="button" id="tingkat">10</button>
+					<input type="text" id="biaya" placeholder="Rp." />
+				</div>
+				<div id="tingkatgroup">
+					<button type="button" id="tingkat">11</button>
+					<input type="text" id="biaya" placeholder="Rp." />
+				</div>
+				<div id="tingkatgroup">
+					<button type="button" id="tingkat">12</button>
+					<input type="text" id="biaya" placeholder="Rp." />
+				</div>
+			</div>
+		</form>
+	</section>
+	<% } %>
+</div>
+<div class="popup-container-profile" id="forgotPasswordPopup">
+	<div class="popup-box-profile">
+		<h2>Lupa Password</h2>
+		<p>Masukan email anda untuk melakukan reset password</p>
+		<form method="POST" action="/forgotpasssiswa" id="forgotpass">
+			<div class="input-group">
+				<input type="email" id="forgotPasswordEmail" />
+			</div>
+			<div class="button-group-profile">
+				<button type="submit" onclick="resetPassword()">Reset Password</button>
+				<button type="button" onclick="closePopup()">Cancel</button>
+			</div>
+		</form>
+	</div>
+</div>

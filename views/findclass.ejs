@@ -1,0 +1,47 @@
+<div id="container">
+	<form action="/filter" method="post">
+		<section id="filter-group">
+			<span id="textkategori">Kategori</span>
+			<select id="mapel" name="mapel">
+				<option disabled selected>Mata Pelajaran</option>
+			</select>
+			<select id="kelas" name="kelas">
+				<option disabled selected>Kelas</option>
+				<option id="kelas1">1</option>
+				<option id="kelas2">2</option>
+				<option id="kelas3">3</option>
+				<option id="kelas4">4</option>
+				<option id="kelas5">5</option>
+				<option id="kelas6">6</option>
+				<option id="kelas7">7</option>
+				<option id="kelas8">8</option>
+				<option id="kelas9">9</option>
+				<option id="kelas10">10</option>
+				<option id="kelas11">11</option>
+				<option id="kelas12">12</option>
+			</select>
+			<span id="textfilter">Filter</span>
+			<p id="textbg">Batas Harga</p>
+			<input type="text" id="min" placeholder="RP Min" name="min" />
+			<input type="text" id="max" placeholder="RP Max" name="max" />
+			<button type="submit" id="submitfilter">Submit</button>
+		</section>
+	</form>
+	<div id="container2">
+		<section id="sort-group">
+			<span>Urutkan</span>
+			<select id="harga" name="harga">
+				<option disabled selected>Harga</option>
+				<option id="hargatertinggi">Harga Tertinggi</option>
+				<option id="hargaterendah">Harga Terendah</option>
+			</select>
+			<select id="rating" name="rating">
+				<option disabled selected>Rating</option>
+				<option id="ratingtertinggi">Rating Tertinggi</option>
+				<option id="ratingterendah">Rating Terendah</option>
+			</select>
+			<input type="text" id="search" placeholder="Search..." name="search" />
+		</section>
+		<section id="content-group"></section>
+	</div>
+</div>
