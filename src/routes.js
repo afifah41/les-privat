@@ -1,25 +1,30 @@
 import express from "express";
+import { body } from "express-validator";
+import permit from "./middleware/authorization.js";
 import {
-	home,
+	login_register,
 	login,
 	register,
+	logout,
+	home,
 	profile,
 	schedule,
 	findclass,
 	myclass,
 	illegal,
 } from "./middleware/controller.js";
-import { body } from "express-validator";
 
 const router = express.Router();
 
 // Define your routes
-router.get("/", home);
-router.get("/home", home);
-router.get("/profile", profile);
-router.get("/schedule", schedule);
-router.get("/findclass", findclass);
-router.get("/myclass", myclass);
+router.get("/", login_register);
+router.get("/home", permit("siswa", "guru"), home);
+router.get("/profile", permit("siswa", "guru"), profile);
+router.get("/schedule", permit("siswa", "guru"), schedule);
+router.get("/findclass", permit("siswa", "guru"), findclass);
+router.get("/myclass", permit("siswa", "guru"), myclass);
+router.get("/profile/logout", permit("siswa", "guru"), logout);
+
 router.post(
 	"/register",
 	[
@@ -41,7 +46,13 @@ router.post(
 	login
 );
 
-// untuk menangani halaman tidak ada
-router.get("*", illegal);
+// Handle non-existent pages
+router.get("*", (req, res, next) => {
+	if (req.originalUrl === "/login-register") {
+		next();
+	} else {
+		illegal(req, res);
+	}
+});
 
 export default router;

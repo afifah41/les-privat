@@ -9,16 +9,14 @@
 		<a href="" id="datadiri">Data Diri</a>
 		<a href="" id="ubahpassword">Ubah Password</a>
 		<a href="" id="tingkatpend">Tingkat Pendidikan</a>
-		<% let x = (user.role == 'guru') ? '-guru' : ''; %>
-
-		<div id="logoutgroup<%= x %>">
-			<a href="/logout">
+		<div id="logoutgroup-guru">
+			<a href="/">
 				<img src="/images/logouticon.png" alt="LogOut Icon" id="logouticon" />
 			</a>
-			<a href="/logout" id="logout">Logout</a>
+			<a href="/" id="logout">Logout</a>
 		</div>
 	</section>
-	<section id="menugroup<%= x %>">
+	<section id="menugroup">
 		<p id="text1-profile">Data Diri</p>
 		<p id="text2-profile">
 			Kelola data diri anda untuk mengontrol, melindungi dan mengamankan akun
@@ -75,17 +73,15 @@
 					<option value="" disabled selected>Kelurahan</option>
 				</select>
 			</div>
-			<% if (user.role === 'guru') { %>
 			<div id="mapelgroup">
 				<p id="mapel">Mata Pelajaran</p>
 				<select name="mapel">
 					<option value="" disabled selected>Mata Pelajaran</option>
 				</select>
 			</div>
-			<% } %>
-			<div id="btngroup<%= x %>">
-				<button type="button" id="btnedit<%= x %>">Edit</button>
-				<button type="submit" id="btnsimpan<%= x %>">Simpan</button>
+			<div id="btngroup-guru">
+				<button type="button" id="btnedit-guru">Edit</button>
+				<button type="submit" id="btnsimpan-guru">Simpan</button>
 			</div>
 		</form>
 	</section>
@@ -125,7 +121,6 @@
 			<a href="#" id="lupapass" onclick="openPopup()">Lupa Password?</a>
 		</form>
 	</section>
-	<% if (user.role == 'guru') { %>
 	<section id="tingkatpendgroup">
 		<p id="text1-profile">Tingkat Pendidikan</p>
 		<p id="text2-profile">
@@ -187,7 +182,6 @@
 			</div>
 		</form>
 	</section>
-	<% } %>
 </div>
 <div class="popup-container-profile" id="forgotPasswordPopup">
 	<div class="popup-box-profile">

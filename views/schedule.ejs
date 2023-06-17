@@ -1,7 +1,9 @@
-<% if (user.role == 'guru') { %>
-<div class="week-nav">
-	<button id="create" onclick="openPopup()">Create</button>
-</div>
+<% if (typeof user !== 'undefined') { %>
+	<% if (user.role == 'guru') { %>
+		<div class="week-nav">
+			<button id="create" onclick="openPopup()">Create</button>
+		</div>
+	<% } %>
 <% } %>
 <section id="tabel">
 	<table>
@@ -177,6 +179,7 @@
 		</tr>
 	</table>
 </section>
+<% if (typeof user !== 'undefined') { %>
 <% if (user.role == 'guru') { %>
 
 <div class="popup-container" id="createpopup">
@@ -246,4 +249,5 @@
 		</form>
 	</div>
 </div>
+<% } %>
 <% } %>

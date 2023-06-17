@@ -3,7 +3,7 @@ import session from "express-session";
 import path from "path";
 import routes from "./routes.js";
 import expressLayouts from "express-ejs-layouts";
-import { authorization } from "./middleware/auth.js";
+
 
 const app = express();
 
@@ -30,8 +30,6 @@ app.use(
 	})
 );
 
-// Use the routes defined in routes.js
-// app.use("/", authorization("guru", "siswa"), routes);
 app.use("/", routes);
 
 // Start the server

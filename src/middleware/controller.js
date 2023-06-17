@@ -3,8 +3,8 @@ import { validationResult } from "express-validator";
 import ip from "ip";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
+import { log } from "console";
 const { sign, verify } = jwt;
-
 
 export const login = (req, res) => {
 	let { email, password } = req.body;
@@ -22,8 +22,8 @@ export const login = (req, res) => {
 			if (rows.length == 1) {
 				// mengambil data user hasil query
 				let user = rows[0];
-				// membuat token dengan durasi 24jam
-				let token = sign({ user }, "rasianegara", {
+				// membuat token dengan durasi 24 jam
+				let token = sign({ user }, "rahasianegara", {
 					expiresIn: "24h",
 				});
 
@@ -40,6 +40,9 @@ export const login = (req, res) => {
 						res.status(500).send("Gagal generate token");
 					} else {
 						req.session.user = user;
+						// Send the token in the response
+						res.setHeader("Authorization", `Bearer ${token}`);
+
 						res.render("home", {
 							title: "Les Privat",
 							layout: "layouts/main",
@@ -110,6 +113,14 @@ export const register = (req, res) => {
 	});
 };
 
+export const login_register = (req, res) => {
+	res.render("home", {
+		title: "Les Privat",
+		layout: "layouts/main",
+		user: req.session.user,
+	});
+};
+
 export const home = (req, res) => {
 	res.render("home", {
 		title: "Les Privat",
@@ -148,6 +159,12 @@ export const myclass = (req, res) => {
 		layout: "layouts/main",
 		user: req.session.user,
 	});
+};
+export const logout = (req, res) => {
+	// Hapus session pengguna
+	req.session.destroy();
+
+	res.redirect("/profile/logout");
 };
 
 export const illegal = (req, res) => {
