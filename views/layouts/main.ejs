@@ -6,6 +6,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title><%= title %></title>
 		<link rel="stylesheet" type="text/css" href="/css/styles.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	</head>
 	<% let y = (x === 'fitur') ? 'fiturb' : ''; %>
 	<body class="<%= y %>">
@@ -17,6 +20,12 @@
 		<script
 			nomodule
 			src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+		<script
+			src="https://code.jquery.com/jquery-3.7.0.js"
+			integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+			crossorigin="anonymous"></script>
 		<script src="login-register.js"></script>
 		<script src="profile.js"></script>
+		<script src="schedule.js"></script>
+	</body>
 </html>

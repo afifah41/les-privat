@@ -14,17 +14,47 @@ function initDoB(day_el, month_el, year_el) {
 		"Desember",
 	];
 
-	let day = "";
-	for (let i = 1; i <= 31; i++) {
-		day += "<option>" + i + "</option>";
-	}
-	day_el.innerHTML = day;
-
+	// Populate months
 	let month = "";
 	for (let i = 0; i < months.length; i++) {
 		month += "<option>" + months[i] + "</option>";
 	}
 	month_el.innerHTML = month;
+
+	// Update days based on selected month
+	function updateDays() {
+		const selectedMonth = month_el.selectedIndex;
+		let daysInMonth;
+
+		if (selectedMonth === 1) {
+			const selectedYear = parseInt(year_el.value);
+			daysInMonth = isLeapYear(selectedYear) ? 29 : 28;
+		} else {
+			daysInMonth = new Date(
+				new Date().getFullYear(),
+				selectedMonth + 1,
+				0
+			).getDate();
+		}
+
+		let day = "";
+		for (let i = 1; i <= daysInMonth; i++) {
+			day += "<option>" + i + "</option>";
+		}
+		day_el.innerHTML = day;
+	}
+
+	// Check if a year is a leap year
+	function isLeapYear(year) {
+		return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+	}
+
+	// Add event listeners to select elements
+	month_el.addEventListener("change", updateDays);
+	year_el.addEventListener("change", updateDays);
+
+	// Initialize days
+	updateDays();
 
 	const current_year = new Date().getFullYear();
 	let year = "";

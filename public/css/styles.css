@@ -83,6 +83,7 @@ header a:not(#proficon):hover::after {
 	font-weight: 500;
 	margin-left: 40px;
 	user-select: none;
+	cursor: pointer;
 }
 
 .btn-login-popup:hover {
@@ -283,6 +284,7 @@ header a:not(#proficon):hover::after {
 	font-size: 1.1em;
 	color: #202236;
 	font-weight: 500;
+	cursor: pointer;
 }
 
 .btn:hover {
@@ -509,29 +511,25 @@ td {
 	border: 1px solid gray;
 	border-collapse: collapse;
 	height: 50px;
-	border-top: none;
 }
 
-th:first-child,
-td:first-child {
-	border-left: none;
+#tanggal-schedule {
+	width: 200px;
 }
 
-th:last-child,
-td:last-child {
-	border-right: none;
+#hari-schedule {
+	width: 200px;
 }
 
-tr:last-child th,
-tr:last-child td {
-	border-bottom: none;
+#jam_mulai-schedule {
+	width: 200px;
 }
 
-#jam {
-	width: 50px;
+#jam_selesai-schedule {
+	width: 200px;
 }
 
-.hari {
+#data_media-schedule {
 	width: 200px;
 }
 
@@ -579,19 +577,7 @@ td {
 }
 
 #tglmulaigroup p {
-	margin-right: 47.5px;
-}
-
-#tglselesaigroup {
-	display: flex;
-}
-
-#tglselesaigroup select {
-	margin-left: 5px;
-}
-
-#tglselesaigroup p {
-	margin-right: 35px;
+	margin-right: 93px;
 }
 
 #jammulaigroup {
@@ -602,12 +588,22 @@ td {
 	margin-right: 81.5px;
 }
 
-#durasigroup {
+#jamselesaigroup {
 	display: flex;
 }
 
-#durasigroup p {
-	margin-right: 112px;
+#jamselesaigroup p {
+	margin-right: 69px;
+}
+
+#mediagroup-schedule {
+	display: flex;
+}
+
+#inputmedia-schedule {
+	height: 25px;
+	margin-left: 84px;
+	width: 200px;
 }
 
 .popup-container p {
@@ -664,7 +660,7 @@ td {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 40px;
-	margin-top: 40px;
+	margin-top: 10px;
 	font-family: Poppins-Regular;
 }
 
@@ -678,6 +674,10 @@ td {
 	height: 50px;
 }
 
+#hari-myclass {
+	width: 150px;
+}
+
 #tanggal-myclass {
 	width: 200px;
 }
@@ -687,11 +687,44 @@ td {
 }
 
 #kelas-myclass {
-	width: 100px;
+	width: 150px;
 }
 
 #waktu-myclass {
 	width: 150px;
+}
+
+#download-pdf {
+	font-family: Poppins-Medium;
+	font-size: 16px;
+	color: white;
+	width: 200px;
+	height: 30px;
+	background-color: #00a3ff;
+	border: none;
+	border-radius: 5px;
+	display: block;
+	margin: auto;
+	margin-top: 20px;
+}
+
+#search-input {
+	font-family: Poppins-Regular;
+	font-size: 15px;
+	margin-left: 15px;
+	padding-left: 5px;
+}
+
+#show-chart {
+	font-family: Poppins-Regular;
+	font-size: 15px;
+	margin-left: 293px;
+	color: white;
+	background-color: #00a3ff;
+	border: none;
+	border-radius: 5px;
+	width: 150px;
+	height: 25px;
 }
 
 /* Find Class CSS */
@@ -1067,13 +1100,12 @@ td {
 }
 
 #inputalamat {
-  resize: none;
-  width: 300px;
-  height: 150px;
-  padding: 5px;
-  font-size: 16px;
+	resize: none;
+	width: 300px;
+	height: 150px;
+	padding: 10px;
+	font-size: 16px;
 }
-
 
 #emailgroup {
 	margin-left: 89px;
@@ -1139,7 +1171,8 @@ td {
 }
 
 #inputasalsekolah {
-	height: 30px;
+	height: 50px;
+	width: 400;
 	font-size: 16px;
 	padding: 5px;
 }
@@ -1147,6 +1180,7 @@ td {
 #btngroup {
 	display: flex;
 	margin-bottom: 0;
+	cursor: pointer;
 }
 
 #btnedit {
@@ -1161,6 +1195,7 @@ td {
 	border: 0;
 	height: 40px;
 	margin-top: 3px;
+	cursor: pointer;
 }
 
 #btnsimpan {
@@ -1175,6 +1210,7 @@ td {
 	border: 0;
 	height: 40px;
 	margin-top: 3px;
+	cursor: pointer;
 }
 
 #ubahpassgroup {
@@ -1248,6 +1284,7 @@ td {
 	border: 0;
 	height: 40px;
 	margin-top: 30px;
+	cursor: pointer;
 }
 
 #lupapass {
@@ -1369,22 +1406,23 @@ h2 {
 	font-size: 19px;
 }
 
-#mapelgroup{
- display: flex;
- font-family: Poppins-Medium;
- color: #4d4d4d;
- margin-left: 20px;
- margin-top: 50px;
+#mapelgroup {
+	display: flex;
+	font-family: Poppins-Medium;
+	color: #4d4d4d;
+	margin-left: 20px;
+	margin-top: 50px;
 }
 
 #mapelgroup select {
- width: 151px;
- font-size: 15px;
- margin-left: 20px;
+	width: 151px;
+	font-size: 15px;
+	margin-left: 20px;
 }
 
 #btngroup-guru {
 	display: flex;
+	cursor: pointer;
 }
 
 #btnedit-guru {
@@ -1398,6 +1436,7 @@ h2 {
 	border-radius: 10px;
 	border: 0;
 	height: 40px;
+	cursor: pointer;
 }
 
 #btnsimpan-guru {
@@ -1411,6 +1450,7 @@ h2 {
 	border-radius: 10px;
 	border: 0;
 	height: 40px;
+	cursor: pointer;
 }
 
 #tingkatpendgroup {
@@ -1462,4 +1502,34 @@ h2 {
 #tingkat7-12 {
 	display: flex;
 	justify-content: space-around;
+}
+
+.birthdate {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Pagination */
+
+#pagination-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+	gap: 10px;
+}
+
+#pagination {
+	text-decoration: none;
+	border: none;
+	background: #00a3ff;
+	color: white;
+	padding: 10px;
+}
+#pagination:hover {
+	color: white;
+	background: #00639d;
+}
+
+#pagination.active {
+	background: #00639d;
 }

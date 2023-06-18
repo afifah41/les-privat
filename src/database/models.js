@@ -27,10 +27,6 @@ export const User = sequelize.define(
 			type: DataTypes.STRING(255),
 			allowNull: false,
 		},
-		birth_date: {
-			type: DataTypes.DATEONLY,
-			allowNull: true,
-		},
 		phone_number: {
 			type: DataTypes.STRING(20),
 			allowNull: true,
@@ -218,6 +214,36 @@ export const TCS = sequelize.define(
 	},
 	{
 		tableName: "TCS",
+		timestamps: false,
+	}
+);
+
+export const dataJadwalSiswa = sequelize.define(
+	"dataJadwalSiswa",
+	{
+		id_teacher: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+		},
+		date: {
+			type: DataTypes.DATEONLY,
+			allowNull: false,
+		},
+		name: {
+			type: DataTypes.STRING(100),
+			allowNull: false,
+		},
+		start_hour: {
+			type: DataTypes.TIME,
+			allowNull: false,
+		},
+		end_hour: {
+			type: DataTypes.TIME,
+			allowNull: false,
+		},
+	},
+	{
+		tableName: "dataJadwalSiswa",
 		timestamps: false,
 	}
 );

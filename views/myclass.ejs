@@ -1,10 +1,173 @@
+<%- include('./layouts/pagination.ejs') %>
+<button id="download-pdf">Download as PDF</button>
+<button id="show-chart">Tampilkan Grafik</button>
+<input type="text" id="search-input" placeholder="Search by name" />
 <section id="tabel-myclass">
-	<table>
-		<tr>
-			<th id="tanggal-myclass">Tanggal</th>
-			<th id="nama-myclass">Nama Siswa</th>
-			<th id="kelas-myclass">Kelas</th>
-			<th id="waktu-myclass">Waktu</th>
-		</tr>
-	</table>
+    <table>
+        <thead>
+            <tr>
+                <th id="hari-myclass">Hari</th>
+                <th id="tanggal-myclass">Tanggal</th>
+                <th id="nama-myclass">Nama Siswa</th>
+                <th id="kelas-myclass">Jam Mulai</th>
+                <th id="waktu-myclass">Jam Selesai</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const row of results) { %>
+                <tr>
+                    <td><%= new Date(row.date).toLocaleDateString('id-ID', { weekday: 'long' }) %></td>
+                    <td><%= new Date(row.date).toLocaleDateString('id-ID') %></td>
+                    <td><%= row.name %></td>
+                    <td><%= row.start_hour %></td>
+                    <td><%= row.end_hour %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    
+    <script>
+        const downloadBtn = document.getElementById('download-pdf');
+        downloadBtn.addEventListener('click', downloadAsPDF);
+
+        function downloadAsPDF() {
+            const tabel = [];
+
+            tabel.push([
+                { text: 'Hari', style: 'tableHeader' },
+                { text: 'Tanggal', style: 'tableHeader' },
+                { text: 'Nama Siswa', style: 'tableHeader' },
+                { text: 'Jam Mulai', style: 'tableHeader' },
+                { text: 'Jam Selesai', style: 'tableHeader' },
+            ]);
+
+            <% for (const row of results) { %>
+            tabel.push([
+                '<%= new Date(row.date).toLocaleDateString('id-ID', { weekday: 'long' })  %>',
+                '<%= new Date(row.date).toLocaleDateString('id-ID') %>',
+                '<%= row.name %>',
+                '<%= row.start_hour %>',
+                '<%= row.end_hour %>',
+            ]);
+            <% } %>
+
+            const pdf = {
+                content: [{
+                    table: {
+                        headerRows: 1,
+                        widths: ['auto', 'auto', 'auto', 'auto', 'auto'],
+                        body: tabel,
+                    },
+                },],
+                styles: {
+                    tableHeader: {
+                        bold: true,
+                        fontSize: 15,
+                        color: 'black',
+                    },
+                },
+            };
+            pdfMake.createPdf(pdf).download('myclass.pdf');
+        }
+
+        const searchInput = document.getElementById('search-input');
+        const tableBody = document.querySelector('#tabel-myclass table tbody');
+        const rows = tableBody.querySelectorAll('tr');
+
+        searchInput.addEventListener('input', search);
+
+        function search() {
+            const searchTerm = searchInput.value.toLowerCase();
+            rows.forEach((row) => {
+                const name = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+                if (name.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        const showChartBtn = document.getElementById('show-chart');
+        showChartBtn.addEventListener('click', toggleBarChart);
+
+        let chartContainer = null;
+
+        function toggleBarChart() {
+            if (chartContainer) {
+                closeBarChart();
+            } else {
+                showBarChart();
+            }
+        }
+
+        function showBarChart() {
+            const days = {};
+            const rows = tableBody.querySelectorAll('tr');
+
+            rows.forEach((row) => {
+                const day = row.querySelector('td:nth-child(1)').textContent;
+                if (days.hasOwnProperty(day)) {
+                    days[day]++;
+                } else {
+                    days[day] = 1;
+                }
+            });
+
+            const labels = Object.keys(days);
+            const data = Object.values(days);
+
+            const chartData = {
+                labels: labels,
+                datasets: [{
+                    label: 'Count Hari',
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    data: data,
+                }],
+            };
+
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+            };
+
+            chartContainer = document.createElement('div');
+            chartContainer.id = 'chart-popup';
+            chartContainer.style.position = 'fixed';
+            chartContainer.style.top = '50%';
+            chartContainer.style.left = '50%';
+            chartContainer.style.transform = 'translate(-50%, -50%)';
+            chartContainer.style.width = '600px';
+            chartContainer.style.height = '400px';
+            chartContainer.style.backgroundColor = 'white';
+            chartContainer.style.border = '1px solid black';
+            chartContainer.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.5)';
+            chartContainer.style.padding = '20px';
+            chartContainer.style.zIndex = '9999';
+
+            const canvas = document.createElement('canvas');
+            chartContainer.appendChild(canvas);
+
+            document.body.appendChild(chartContainer);
+
+            new Chart(canvas, {
+                type: 'bar',
+                data: chartData,
+                options: chartOptions,
+            });
+
+            showChartBtn.textContent = 'Tutup Grafik';
+        }
+
+        function closeBarChart() {
+            if (chartContainer) {
+                chartContainer.remove();
+                chartContainer = null;
+            }
+
+            showChartBtn.textContent = 'Tampilkan Grafik';
+        }
+    </script>
 </section>

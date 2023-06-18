@@ -46,3 +46,8 @@ package.json
 
 
 
+				<input
+					type="text"
+					id="inputasalsekolah"
+					name="address"
+					value="<%= user.address %>" />

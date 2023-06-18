@@ -10,7 +10,6 @@
 				id="pilih-foto-profile" />
 			<a id="btn-upload-foto-profile">Simpan</a>
 		</div>
-
 		<hr id="line1" />
 		<a href="" id="datadiri">Data Diri</a>
 		<a href="" id="ubahpassword">Ubah Password</a>
@@ -36,7 +35,7 @@
 			Kelola data diri anda untuk mengontrol, melindungi dan mengamankan akun
 		</p>
 		<hr id="line2" />
-		<form action="/update-profile" method="post" id="formdatadiri">
+		<form action="/profile" method="post" id="formdatadiri">
 			<div id="namagroup">
 				<p id="nama">Nama</p>
 				<input
@@ -75,33 +74,25 @@
 					</label>
 				</div>
 			</div>
-
-			<div id="tgllahirgroup">
-				<p id="tgllahir">Tanggal Lahir</p>
-				<select name="day"></select>
-				<select name="month"></select>
-				<select name="year"></select>
-			</div>
 			<div id="alamatgroup">
-				<p id="alamat">Alamat</p>
-				<textarea
-					id="inputalamat"
-					cols="30"
-					rows="10"
-					name="address"
-					value="<%= user.address %>"></textarea>
-			</div>
+  				<p id="alamat">Alamat</p>
+  				<textarea id="inputalamat" cols="30" rows="10" name="address"><%= user.address %></textarea>
+				</div>
+
+
 			<% if (user.role == 'siswa') { %>
 			<div id="asalsekolahgroup">
 				<p id="asalsekolah">Asal Sekolah</p>
-				<input type="text" id="inputasalsekolah" name="asalsekolah" />
+				<input
+					type="text"
+					id="inputasalsekolah"
+					name="school"
+					value="<%= user.school %>" />
 			</div>
 			<% } %>
 			<div id="btngroup<%= x %>">
 				<button type="button" id="btnedit<%= x %>">Edit</button>
-				<button type="submit" id="btnsimpan<%= x %>" formmethod="PUT">
-					Simpan
-				</button>
+				<button type="submit" id="btnsimpan<%= x %>">Simpan</button>
 			</div>
 		</form>
 	</section>
@@ -149,7 +140,7 @@
 						onclick="togglePasswordVisibility('inputkonpassbaru')"></span>
 				</div>
 			</div>
-			<button type="submit" id="btnubahpass" formmethod="PUT">Save</button>
+			<button type="submit" id="btnubahpass">Save</button>
 		</form>
 	</section>
 	<% if (user.role == 'guru') { %>

@@ -12,6 +12,7 @@ import {
 	Class,
 	Registration,
 	TCS,
+	dataJadwalSiswa,
 } from "../database/models.js";
 
 export const login_register = (req, res) => {
@@ -30,7 +31,16 @@ export const home = (req, res) => {
 	});
 };
 
-export const profile = (req, res) => {
+export const profile = async (req, res) => {
+	if (req.session.user.role == "siswa") {
+		// Fetch the updated user data from the database
+		const updatedUser = await Student.findOne({
+			where: { id_student: req.session.user.id_user },
+		});
+		// Update req.session.user with the updated user data
+		req.session.user.school = updatedUser.school;
+	}
+
 	res.render("profile", {
 		title: "Profile",
 		layout: "layouts/main",
@@ -38,12 +48,43 @@ export const profile = (req, res) => {
 	});
 };
 
-export const schedule = (req, res) => {
-	res.render("schedule", {
-		title: "Schedule",
-		layout: "layouts/main",
-		user: req.session.user,
-	});
+export const schedule = async (req, res) => {
+	try {
+		const { id_user } = req.session.user;
+		const schedules = await Schedule.findAll({
+			where: { id_teacher: id_user },
+		});
+
+		res.render("schedule", {
+			title: "Schedule",
+			layout: "layouts/main",
+			user: req.session.user,
+			schedules: schedules,
+		});
+	} catch (error) {
+		console.error(error);
+		res.status(500).send("Internal Server Error");
+	}
+};
+
+export const createSchedule = async (req, res) => {
+	try {
+		let { day, month, year, jammulai, jamselesai, media_schedule } = req.body;
+
+		let date = `${year}-${month}-${day}`;
+		await Schedule.create({
+			date: date,
+			start_hour: jammulai,
+			end_hour: jamselesai,
+			media: media_schedule,
+			id_teacher: req.session.user.id_user,
+		});
+
+		res.redirect("schedule");
+	} catch (error) {
+		console.error(error);
+		res.status(500).send("Internal Server Error: " + error.message);
+	}
 };
 
 export const findclass = (req, res) => {
@@ -54,16 +95,37 @@ export const findclass = (req, res) => {
 	});
 };
 
-export const myclass = (req, res) => {
-	res.render("myclass", {
-		title: "My Class",
-		layout: "layouts/main",
-		user: req.session.user,
-	});
+export const myclass = async (req, res) => {
+	try {
+		const { id_user } = req.session.user;
+		const itemsPerPage = 5;
+		let page = parseInt(req.query.page) || 1;
+
+		const results = await dataJadwalSiswa.findAndCountAll({
+			attributes: ["id_teacher", "date", "name", "start_hour", "end_hour"],
+			where: { id_teacher: id_user },
+			offset: (page - 1) * itemsPerPage,
+			limit: itemsPerPage,
+		});
+
+		const totalPages = Math.ceil(results.count / itemsPerPage);
+
+		res.render("myclass", {
+			title: "My Class",
+			layout: "layouts/main",
+			user: req.session.user,
+			results: results.rows,
+			totalPages,
+			currentPage: page,
+		});
+	} catch (error) {
+		console.error(error);
+		res.status(500).send("Failed to fetch data");
+	}
 };
 
 // Validation rules for login
-export const loginValidationRules = () => {
+export const validationRules = () => {
 	return [
 		body("email").isEmail().withMessage("Invalid email"),
 		body("password")
@@ -91,6 +153,16 @@ export const login = async (req, res) => {
 		}
 
 		req.session.user = user;
+
+		if (user.role == "siswa") {
+			// Fetch the updated user data from the database
+			const updatedUser = await Student.findOne({
+				where: { id_student: user.id_user },
+			});
+
+			// Update req.session.user with the updated user data
+			req.session.user.school = updatedUser.school;
+		}
 
 		res.render("home", {
 			title: "Les Privat",
@@ -133,9 +205,8 @@ export const register = async (req, res) => {
 			role,
 		});
 
-		// newUser = await User.findOne({
-		// 	where: { email, password: hashedPassword },
-		// });
+		// Store the user data in the session
+		req.session.user = newUser;
 
 		// Insert the new user with role
 		if (role == "siswa") {
@@ -147,9 +218,6 @@ export const register = async (req, res) => {
 				id_teacher: newUser.id_user,
 			});
 		}
-
-		// Store the user data in the session
-		req.session.user = newUser;
 
 		// Redirect to the home page
 		res.render("home", {
@@ -165,7 +233,7 @@ export const register = async (req, res) => {
 
 export const upload_picture = async (req, res) => {
 	try {
-		const userId = req.session.user.id;
+		const userId = req.session.user.id_user;
 		const newPicture = req.body.picture;
 		const fileExtension = req.body.extension;
 
@@ -174,7 +242,7 @@ export const upload_picture = async (req, res) => {
 				? "public/images/siswa"
 				: "public/images/guru";
 
-		const user = await User.findOne({ where: { id: userId } });
+		const user = await User.findOne({ where: { id_user: userId } });
 		if (user.profile_picture) {
 			const oldFilePath = path.join(folderPath, User.profile_picture);
 			fs.unlinkSync(oldFilePath);
@@ -209,18 +277,10 @@ export const upload_picture = async (req, res) => {
 
 export const update_personal_data = async (req, res) => {
 	try {
-		const id = req.session.user.id;
-		const {
-			name,
-			email,
-			phone_number,
-			gender,
-			day,
-			month,
-			year,
-			address,
-			mapel,
-		} = req.body;
+		const user = req.session.user;
+		const { name, email, phone_number, gender, address, school } = req.body;
+
+		console.log("ISI BODY : ", req.body);
 
 		// Update the user profile with the submitted form data
 		await User.update(
@@ -230,13 +290,23 @@ export const update_personal_data = async (req, res) => {
 				phone_number,
 				gender,
 				address,
-				birth_date: new Date(year, month, day),
 			},
-			{ where: { id_user: id } }
+			{ where: { id_user: user.id_user } }
 		);
 
+		if (user.role == "siswa") {
+			await User.update(
+				{
+					school,
+				},
+				{ where: { id_user: user.id_user } }
+			);
+		}
+
 		// Fetch the updated user data from the database
-		const updatedUser = await User.findOne({ where: { id_user: id } });
+		const updatedUser = await User.findOne({
+			where: { id_user: user.id_user },
+		});
 
 		// Update req.session.user with the updated user data
 		req.session.user = updatedUser;
@@ -251,10 +321,9 @@ export const update_personal_data = async (req, res) => {
 
 export const change_password = async (req, res) => {
 	try {
-		const id_user = req.session.user.id;
-		const old_password = req.body.old_password;
-		const new_password = req.body.new_password;
-		const conf_new_password = req.body.confirm_new_password;
+		console.log("MASUK TRY");
+		const id_user = req.session.user.id_user;
+		const { old_password, new_password, confirm_new_password } = req.body;
 
 		let hashed_password = crypto
 			.createHash("sha256")
@@ -270,15 +339,23 @@ export const change_password = async (req, res) => {
 			return;
 		}
 
-		if (new_password == conf_new_password) {
+		if (new_password == confirm_new_password) {
 			hashed_password = crypto
 				.createHash("sha256")
 				.update(password)
 				.digest("base64");
 
-			await User.update({ password: hashed_password }, { where: { id_user } });
+			await User.update(
+				{ password: hashed_password },
+				{ where: { id_user: id_user } }
+			);
 		}
-	} catch (error) {}
+
+		res.redirect("/profile");
+	} catch (error) {
+		console.error(error);
+		res.status(500).send("Terjadi kesalahan saat update password");
+	}
 };
 
 export const teacher_subject_class = async (req, res) => {
@@ -286,7 +363,7 @@ export const teacher_subject_class = async (req, res) => {
 		const id_teacher = req.session.user.id;
 		const password = req.body.password;
 		const new_password = req.body.password;
-		const conf_new_password = req.body.password;
+		const confirm_new_password = req.body.password;
 
 		let hashed_password = crypto
 			.createHash("sha256")

@@ -6,169 +6,25 @@
 <section id="tabel">
 	<table>
 		<tr>
-			<th id="jam">Jam</th>
-			<th class="hari">Senin</th>
-			<th class="hari">Selasa</th>
-			<th class="hari">Rabu</th>
-			<th class="hari">Kamis</th>
-			<th class="hari">Jumat</th>
-			<th class="hari">Sabtu</th>
-			<th class="hari">Minggu</th>
+			<th id="tanggal-schedule">Tanggal</th>
+			<th id="hari-schedule">Hari</th>
+			<th id="jam_mulai-schedule">Jam Mulai</th>
+			<th id="jam_selesai-schedule">Jam Selesai</th>
+			<th id="data_media-schedule">Media</th>
 		</tr>
+		<% for (let i = 0; i < schedules.length; i++) { %>
 		<tr>
-			<td>07:00</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td><%= new Date(schedules[i].date).toLocaleDateString('id-ID') %></td>
+			<td>
+				<%= new Date(schedules[i].date).toLocaleDateString('id-ID', { weekday:
+				'long' }) %>
+			</td>
+			<td><%= schedules[i].start_hour %></td>
+			<td><%= schedules[i].end_hour %></td>
+			<td><%= schedules[i].media %></td>
 		</tr>
-		<tr>
-			<td>08:00</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>09:00</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>10:00</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>11:00</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>12:00</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>13:00</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>14:00</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>15:00</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>16:00</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>17:00</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>18:00</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>19:00</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>20:00</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>21:00</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>22:00</td>
-			<td></td>
-			<td></td>
+		<% } %>
+		<tr id="empty-row" style="display: none">
 			<td></td>
 			<td></td>
 			<td></td>
@@ -198,47 +54,56 @@
 				</select>
 			</div>
 			<div id="tglmulaigroup">
-				<p id="tglmulai">Tanggal Mulai</p>
+				<p id="tglmulai">Tanggal</p>
 				<select name="day"></select>
 				<select name="month"></select>
 				<select name="year"></select>
 			</div>
-			<div id="tglSelesaigroup">
-				<p id="tglSelesai">Tanggal Selesai</p>
-				<select name="day2"></select>
-				<select name="month2"></select>
-				<select name="year2"></select>
-			</div>
 			<div id="jammulaigroup">
 				<p id="jammulai">Jam Mulai</p>
 				<select name="jammulai">
-					<option>07:00</option>
-					<option>08:00</option>
-					<option>09:00</option>
-					<option>10:00</option>
-					<option>11:00</option>
-					<option>12:00</option>
-					<option>13:00</option>
-					<option>14:00</option>
-					<option>15:00</option>
-					<option>16:00</option>
-					<option>17:00</option>
-					<option>18:00</option>
-					<option>19:00</option>
-					<option>20:00</option>
-					<option>21:00</option>
-					<option>22:00</option>
+					<option value="07:00">07:00</option>
+					<option value="08:00">08:00</option>
+					<option value="09:00">09:00</option>
+					<option value="10:00">10:00</option>
+					<option value="11:00">11:00</option>
+					<option value="12:00">12:00</option>
+					<option value="13:00">13:00</option>
+					<option value="14:00">14:00</option>
+					<option value="15:00">15:00</option>
+					<option value="16:00">16:00</option>
+					<option value="17:00">17:00</option>
+					<option value="18:00">18:00</option>
+					<option value="19:00">19:00</option>
+					<option value="20:00">20:00</option>
+					<option value="21:00">21:00</option>
+					<option value="22:00">22:00</option>
 				</select>
 			</div>
-			<div id="durasigroup">
-				<p id="durasi">Durasi</p>
-				<select name="durasi">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
+			<div id="jamselesaigroup">
+				<p id="jamselesai">Jam Selesai</p>
+				<select name="jamselesai">
+					<option value="07:00">07:00</option>
+					<option value="08:00">08:00</option>
+					<option value="09:00">09:00</option>
+					<option value="10:00">10:00</option>
+					<option value="11:00">11:00</option>
+					<option value="12:00">12:00</option>
+					<option value="13:00">13:00</option>
+					<option value="14:00">14:00</option>
+					<option value="15:00">15:00</option>
+					<option value="16:00">16:00</option>
+					<option value="17:00">17:00</option>
+					<option value="18:00">18:00</option>
+					<option value="19:00">19:00</option>
+					<option value="20:00">20:00</option>
+					<option value="21:00">21:00</option>
+					<option value="22:00">22:00</option>
 				</select>
+			</div>
+			<div id="mediagroup-schedule">
+				<p id="media-schedule">Media</p>
+				<input type="text" id="inputmedia-schedule" name="media_schedule" />
 			</div>
 			<div class="button-group">
 				<button type="submit" id="upload">Upload</button>
