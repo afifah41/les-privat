@@ -1066,6 +1066,15 @@ td {
 	padding: 5px;
 }
 
+#inputalamat {
+  resize: none;
+  width: 300px;
+  height: 150px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+
 #emailgroup {
 	margin-left: 89px;
 }

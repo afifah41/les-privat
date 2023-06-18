@@ -42,7 +42,7 @@
 				<input
 					type="text"
 					id="inputnama"
-					name="nama"
+					name="name"
 					value="<%= user.name %>" />
 			</div>
 			<div id="emailgroup">
@@ -81,12 +81,13 @@
 				<select name="year"></select>
 			</div>
 			<div id="alamatgroup">
-				<p id="alamat">Nama</p>
-				<input
-					type="text"
-					id="inputnama"
-					name="nama"
-					value="<%= user.address %>" />
+				<p id="alamat">Alamat</p>
+				<textarea
+					id="inputalamat"
+					cols="30"
+					rows="10"
+					name="address"
+					value="<%= user.address %>"></textarea>
 			</div>
 			<% if (user.role == 'siswa') { %>
 			<div id="asalsekolahgroup">
