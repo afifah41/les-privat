@@ -3,7 +3,16 @@ import { body, validationResult } from "express-validator";
 import crypto from "crypto";
 import fs from "fs";
 import path from "path";
-import { pengguna } from "../database/models.js";
+import {
+	User,
+	Student,
+	Teacher,
+	Subject,
+	Schedule,
+	Class,
+	Registration,
+	TCS,
+} from "../database/models.js";
 
 export const login_register = (req, res) => {
 	res.render("home", {
@@ -72,7 +81,7 @@ export const login = async (req, res) => {
 			.update(password)
 			.digest("base64");
 
-		const user = await pengguna.findOne({
+		const user = await User.findOne({
 			where: { email, password: hashed_pass },
 		});
 
@@ -111,18 +120,33 @@ export const register = async (req, res) => {
 			.digest("base64");
 
 		// Check if email is already registered
-		const existingUser = await pengguna.findOne({ where: { email } });
+		const existingUser = await User.findOne({ where: { email } });
 		if (existingUser) {
 			return res.status(500).send("Email is already registered");
 		}
 
 		// Insert the new user
-		const newUser = await pengguna.create({
+		const newUser = await User.create({
 			name,
 			email,
 			password: hashedPassword,
 			role,
 		});
+
+		// newUser = await User.findOne({
+		// 	where: { email, password: hashedPassword },
+		// });
+
+		// Insert the new user with role
+		if (role == "siswa") {
+			await Student.create({
+				id_student: newUser.id_user,
+			});
+		} else {
+			await Teacher.create({
+				id_teacher: newUser.id_user,
+			});
+		}
 
 		// Store the user data in the session
 		req.session.user = newUser;
@@ -139,7 +163,7 @@ export const register = async (req, res) => {
 	}
 };
 
-export const upload_foto = async (req, res) => {
+export const upload_picture = async (req, res) => {
 	try {
 		const userId = req.session.user.id;
 		const newPicture = req.body.picture;
@@ -150,9 +174,9 @@ export const upload_foto = async (req, res) => {
 				? "public/images/siswa"
 				: "public/images/guru";
 
-		const user = await pengguna.findOne({ where: { id: userId } });
+		const user = await User.findOne({ where: { id: userId } });
 		if (user.profile_picture) {
-			const oldFilePath = path.join(folderPath, user.profile_picture);
+			const oldFilePath = path.join(folderPath, User.profile_picture);
 			fs.unlinkSync(oldFilePath);
 		}
 
@@ -165,13 +189,13 @@ export const upload_foto = async (req, res) => {
 
 		fs.writeFileSync(filePath, fileBuffer);
 
-		await pengguna.update(
+		await User.update(
 			{ profile_picture: newFileName },
-			{ where: { id: userId } }
+			{ where: { id_user: userId } }
 		);
 
 		// Fetch the updated user data from the database
-		const updatedUser = await pengguna.findOne({ where: { id: userId } });
+		const updatedUser = await User.findOne({ where: { id_user: userId } });
 
 		// Update req.session.user with the updated user data
 		req.session.user = updatedUser;
@@ -183,31 +207,36 @@ export const upload_foto = async (req, res) => {
 	}
 };
 
-export const update_profile = async (req, res) => {
+export const update_personal_data = async (req, res) => {
 	try {
-		const userId = req.session.user.id;
-		const { name, email, phone_number, choice, day, month, year, mapel } =
-			req.body;
-
-		// Perform validation and error handling as needed
+		const id = req.session.user.id;
+		const {
+			name,
+			email,
+			phone_number,
+			gender,
+			day,
+			month,
+			year,
+			address,
+			mapel,
+		} = req.body;
 
 		// Update the user profile with the submitted form data
-		await pengguna.update(
+		await User.update(
 			{
 				name,
 				email,
 				phone_number,
-				choice,
-				day,
-				month,
-				year,
-				mapel,
+				gender,
+				address,
+				birth_date: new Date(year, month, day),
 			},
-			{ where: { id: userId } }
+			{ where: { id_user: id } }
 		);
 
 		// Fetch the updated user data from the database
-		const updatedUser = await pengguna.findOne({ where: { id: userId } });
+		const updatedUser = await User.findOne({ where: { id_user: id } });
 
 		// Update req.session.user with the updated user data
 		req.session.user = updatedUser;
@@ -220,8 +249,72 @@ export const update_profile = async (req, res) => {
 	}
 };
 
+export const change_password = async (req, res) => {
+	try {
+		const id_user = req.session.user.id;
+		const old_password = req.body.old_password;
+		const new_password = req.body.new_password;
+		const conf_new_password = req.body.confirm_new_password;
+
+		let hashed_password = crypto
+			.createHash("sha256")
+			.update(old_password)
+			.digest("base64");
+
+		const user = await User.findOne({
+			where: { id_user, password: hashed_password },
+		});
+
+		if (!user) {
+			res.status(401).send("Password salah!");
+			return;
+		}
+
+		if (new_password == conf_new_password) {
+			hashed_password = crypto
+				.createHash("sha256")
+				.update(password)
+				.digest("base64");
+
+			await User.update({ password: hashed_password }, { where: { id_user } });
+		}
+	} catch (error) {}
+};
+
+export const teacher_subject_class = async (req, res) => {
+	try {
+		const id_teacher = req.session.user.id;
+		const password = req.body.password;
+		const new_password = req.body.password;
+		const conf_new_password = req.body.password;
+
+		let hashed_password = crypto
+			.createHash("sha256")
+			.update(password)
+			.digest("base64");
+
+		const user = await User.findOne({
+			where: { id_user, password: hashed_password },
+		});
+
+		if (!user) {
+			res.status(401).send("Password salah!");
+			return;
+		}
+
+		if (new_password == conf_new_password) {
+			hashed_password = crypto
+				.createHash("sha256")
+				.update(password)
+				.digest("base64");
+
+			await User.update({ password: hashed_password }, { where: { id_user } });
+		}
+	} catch (error) {}
+};
+
 export const logout = (req, res) => {
-	// Hapus session pengguna
+	// Hapus session User
 	req.session.destroy();
 
 	res.redirect("/");

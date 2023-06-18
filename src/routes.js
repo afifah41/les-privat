@@ -12,8 +12,8 @@ import {
 	schedule,
 	findclass,
 	myclass,
-	upload_foto,
-	update_profile,
+	upload_picture,
+	update_personal_data,
 	illegal,
 } from "./middleware/controller.js";
 
@@ -29,8 +29,8 @@ router.get("/schedule", permit("siswa", "guru"), schedule);
 router.get("/findclass", permit("siswa", "guru"), findclass);
 router.get("/myclass", permit("siswa", "guru"), myclass);
 router.get("/profile/logout", permit("siswa", "guru"), logout);
-router.post("/update-profile", update_profile);
-router.put("/update-foto", upload_foto);
+router.post("/update-profile", update_personal_data);
+router.put("/update-foto", upload_picture);
 
 // Handle non-existent pages
 router.get("*", (req, res, next) => {

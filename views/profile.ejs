@@ -81,30 +81,19 @@
 				<select name="year"></select>
 			</div>
 			<div id="alamatgroup">
-				<p id="nama">Nama</p>
+				<p id="alamat">Nama</p>
 				<input
 					type="text"
 					id="inputnama"
 					name="nama"
-					value="<%= user.name %>" />
+					value="<%= user.address %>" />
 			</div>
-			<div id="alamatgroup">
-				<p id="alamat">Alamat</p>
-			</div>
-			<% if (user.role == 'guru') { %>
-			<div id="mapelgroup">
-				<p id="mapel">Mata Pelajaran</p>
-				<select name="mapel">
-					<option value="" disabled selected>Mata Pelajaran</option>
-				</select>
-			</div>
-			<% } else { %>
+			<% if (user.role == 'siswa') { %>
 			<div id="asalsekolahgroup">
 				<p id="asalsekolah">Asal Sekolah</p>
 				<input type="text" id="inputasalsekolah" name="asalsekolah" />
 			</div>
 			<% } %>
-
 			<div id="btngroup<%= x %>">
 				<button type="button" id="btnedit<%= x %>">Edit</button>
 				<button type="submit" id="btnsimpan<%= x %>" formmethod="PUT">
@@ -117,11 +106,15 @@
 		<p id="text1-profile">Ubah Password</p>
 		<p id="text2-profile">Kelola password akun anda dengan kode yang kuat</p>
 		<hr id="line2" />
-		<form id="formubahpass" action="/ubahpassguru" method="post">
+		<form id="formubahpass" action="/ubah-password" method="post">
 			<div id="passlamagroup">
 				<p id="passlama">Password Lama</p>
 				<div class="password-wrapper">
-					<input type="password" id="inputpasslama" class="password-input" />
+					<input
+						type="password"
+						id="inputpasslama"
+						class="password-input"
+						name="old_password" />
 					<span
 						class="toggle-password"
 						onclick="togglePasswordVisibility('inputpasslama')"></span>
@@ -130,7 +123,11 @@
 			<div id="passbarugroup">
 				<p id="passbaru">Password Baru</p>
 				<div class="password-wrapper">
-					<input type="password" id="inputpassbaru" class="password-input" />
+					<input
+						type="password"
+						id="inputpassbaru"
+						class="password-input"
+						name="new_password" />
 					<span
 						class="toggle-password"
 						onclick="togglePasswordVisibility('inputpassbaru')"></span>
@@ -139,14 +136,17 @@
 			<div id="konpassbarugroup">
 				<p id="konpassbaru">Konfirmasi Password Baru</p>
 				<div class="password-wrapper">
-					<input type="password" id="inputkonpassbaru" class="password-input" />
+					<input
+						type="password"
+						id="inputkonpassbaru"
+						class="password-input"
+						name="confirm_new_password" />
 					<span
 						class="toggle-password"
 						onclick="togglePasswordVisibility('inputkonpassbaru')"></span>
 				</div>
 			</div>
-			<button type="submit" id="btnubahpass">Ubah Password</button>
-			<a href="#" id="lupapass" onclick="openPopup()">Lupa Password?</a>
+			<button type="submit" id="btnubahpass" formmethod="PUT">Save</button>
 		</form>
 	</section>
 	<% if (user.role == 'guru') { %>
@@ -157,6 +157,12 @@
 		</p>
 		<hr id="line2" />
 		<form id="formtingkatpend" action="/tingkatpend" method="post">
+			<div id="mapelgroup">
+				<p id="mapel">Mata Pelajaran</p>
+				<select name="mapel">
+					<option value="" disabled selected>Mata Pelajaran</option>
+				</select>
+			</div>
 			<div id="tingkat1-6">
 				<div id="tingkatgroup">
 					<button type="button" id="tingkat">1</button>
