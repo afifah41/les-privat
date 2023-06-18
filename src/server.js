@@ -3,7 +3,7 @@ import session from "express-session";
 import path from "path";
 import routes from "./routes.js";
 import expressLayouts from "express-ejs-layouts";
-
+import bodyParser from "body-parser";
 
 const app = express();
 
@@ -19,7 +19,8 @@ app.use(express.static(staticPathUtils));
 app.use(expressLayouts);
 
 // Parse URL-encoded bodies
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: "10mb" }));
+app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 
 // Set up session middleware
 app.use(

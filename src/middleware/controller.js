@@ -1,117 +1,9 @@
-import { connection } from "../utils/connection.js";
-import { validationResult } from "express-validator";
-import ip from "ip";
-import jwt from "jsonwebtoken";
+import { connection } from "./connection.js";
+import { body, validationResult } from "express-validator";
 import crypto from "crypto";
-import { log } from "console";
-const { sign, verify } = jwt;
-
-export const login = (req, res) => {
-	let { email, password } = req.body;
-	let hashed_pass = crypto
-		.createHash("sha256")
-		.update(password)
-		.digest("base64");
-
-	let loginQuery = `SELECT * FROM pengguna WHERE email = ? AND password = ?`;
-	connection.query(loginQuery, [email, hashed_pass], (err, rows) => {
-		if (err) {
-			console.error(err);
-			res.status(500).send("Login gagal.");
-		} else {
-			if (rows.length == 1) {
-				// mengambil data user hasil query
-				let user = rows[0];
-				// membuat token dengan durasi 24 jam
-				let token = sign({ user }, "rahasianegara", {
-					expiresIn: "24h",
-				});
-
-				let tokenData = {
-					id_user: user.id,
-					access_token: token,
-					ip_address: ip.address(),
-				};
-
-				let insertTokenQuery = "INSERT INTO token SET ?";
-				connection.query(insertTokenQuery, tokenData, function (error, rows) {
-					if (error) {
-						console.log(error);
-						res.status(500).send("Gagal generate token");
-					} else {
-						req.session.user = user;
-						// Send the token in the response
-						res.setHeader("Authorization", `Bearer ${token}`);
-
-						res.render("home", {
-							title: "Les Privat",
-							layout: "layouts/main",
-							user: req.session.user,
-						});
-					}
-				});
-			} else {
-				res.status(401).send("Email or password invalid!");
-			}
-		}
-	});
-};
-
-export const register = (req, res) => {
-	let { name, email, password, role } = req.body;
-
-	// Validate inputs using express-validator
-	let errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(400).json({ errors: errors.array() });
-	}
-
-	// Hash the password securely
-	let hashedPassword = crypto
-		.createHash("sha256")
-		.update(password)
-		.digest("base64");
-
-	// Query to check if email is already registered
-	let checkEmailQuery = "SELECT * FROM pengguna WHERE email = ?";
-	let queryValues = [email];
-
-	// Check if email is already registered
-	connection.query(checkEmailQuery, queryValues, (error, rows) => {
-		if (error) {
-			console.error(error);
-			return res.status(500).send("Internal Server Error");
-		} else {
-			if (rows.length === 0) {
-				// If email is not registered, insert the new user
-				let insertQuery =
-					"INSERT INTO Pengguna (name, email, password, role) VALUES (?, ?, ?, ?)";
-				let insertValues = [name, email, hashedPassword, role];
-				console.log(insertValues);
-
-				connection.query(insertQuery, insertValues, (error, rows) => {
-					if (error) {
-						console.error(error);
-						res.status(500).send("Failed to insert data into pengguna table");
-					} else {
-						// Store name and email in session
-						req.session.user = req.body;
-
-						// Redirect based on role selection
-						res.render("home", {
-							title: "Les Privat",
-							layout: "layouts/main",
-							user: req.session.user,
-						});
-					}
-				});
-			} else {
-				// If email is already registered
-				res.status(500).send("Email is already registered");
-			}
-		}
-	});
-};
+import fs from "fs";
+import path from "path";
+import { pengguna } from "../database/models.js";
 
 export const login_register = (req, res) => {
 	res.render("home", {
@@ -160,11 +52,179 @@ export const myclass = (req, res) => {
 		user: req.session.user,
 	});
 };
+
+// Validation rules for login
+export const loginValidationRules = () => {
+	return [
+		body("email").isEmail().withMessage("Invalid email"),
+		body("password")
+			.isLength({ min: 8 })
+			.withMessage("Password must be at least 8 characters"),
+	];
+};
+
+export const login = async (req, res) => {
+	try {
+		let { email, password } = req.body;
+
+		let hashed_pass = crypto
+			.createHash("sha256")
+			.update(password)
+			.digest("base64");
+
+		const user = await pengguna.findOne({
+			where: { email, password: hashed_pass },
+		});
+
+		if (!user) {
+			res.status(401).send("Email or password invalid!");
+			return;
+		}
+
+		req.session.user = user;
+
+		res.render("home", {
+			title: "Les Privat",
+			layout: "layouts/main",
+			user: req.session.user,
+		});
+	} catch (error) {
+		console.error(error);
+		res.status(500).send("Login gagal.");
+	}
+};
+
+export const register = async (req, res) => {
+	try {
+		let { name, email, password, role } = req.body;
+
+		// Validate inputs using express-validator
+		let errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			return res.status(400).json({ errors: errors.array() });
+		}
+
+		// Hash the password securely
+		let hashedPassword = crypto
+			.createHash("sha256")
+			.update(password)
+			.digest("base64");
+
+		// Check if email is already registered
+		const existingUser = await pengguna.findOne({ where: { email } });
+		if (existingUser) {
+			return res.status(500).send("Email is already registered");
+		}
+
+		// Insert the new user
+		const newUser = await pengguna.create({
+			name,
+			email,
+			password: hashedPassword,
+			role,
+		});
+
+		// Store the user data in the session
+		req.session.user = newUser;
+
+		// Redirect to the home page
+		res.render("home", {
+			title: "Les Privat",
+			layout: "layouts/main",
+			user: req.session.user,
+		});
+	} catch (error) {
+		console.error(error);
+		res.status(500).send("Failed to register user");
+	}
+};
+
+export const upload_foto = async (req, res) => {
+	try {
+		const userId = req.session.user.id;
+		const newPicture = req.body.picture;
+		const fileExtension = req.body.extension;
+
+		const folderPath =
+			req.session.user.role === "siswa"
+				? "public/images/siswa"
+				: "public/images/guru";
+
+		const user = await pengguna.findOne({ where: { id: userId } });
+		if (user.profile_picture) {
+			const oldFilePath = path.join(folderPath, user.profile_picture);
+			fs.unlinkSync(oldFilePath);
+		}
+
+		const newFileName = `${req.session.user.name}_${userId}.${fileExtension}`;
+		const filePath = path.join(folderPath, newFileName);
+
+		// Remove the "data:image/extension;base64," prefix from the picture data
+		const base64Data = newPicture.replace(/^data:image\/\w+;base64,/, "");
+		const fileBuffer = Buffer.from(base64Data, "base64");
+
+		fs.writeFileSync(filePath, fileBuffer);
+
+		await pengguna.update(
+			{ profile_picture: newFileName },
+			{ where: { id: userId } }
+		);
+
+		// Fetch the updated user data from the database
+		const updatedUser = await pengguna.findOne({ where: { id: userId } });
+
+		// Update req.session.user with the updated user data
+		req.session.user = updatedUser;
+
+		res.redirect("/profile");
+	} catch (error) {
+		console.error(error);
+		res.status(500).send("Terjadi kesalahan saat mengunggah foto profil.");
+	}
+};
+
+export const update_profile = async (req, res) => {
+	try {
+		const userId = req.session.user.id;
+		const { name, email, phone_number, choice, day, month, year, mapel } =
+			req.body;
+
+		// Perform validation and error handling as needed
+
+		// Update the user profile with the submitted form data
+		await pengguna.update(
+			{
+				name,
+				email,
+				phone_number,
+				choice,
+				day,
+				month,
+				year,
+				mapel,
+			},
+			{ where: { id: userId } }
+		);
+
+		// Fetch the updated user data from the database
+		const updatedUser = await pengguna.findOne({ where: { id: userId } });
+
+		// Update req.session.user with the updated user data
+		req.session.user = updatedUser;
+
+		res.redirect("/profile");
+	} catch (error) {
+		// res.redirect("/profile");
+		console.error(error);
+		res.status(500).send("Terjadi kesalahan saat mengupdate profil.");
+	}
+};
+
 export const logout = (req, res) => {
 	// Hapus session pengguna
 	req.session.destroy();
 
-	res.redirect("/profile/logout");
+	res.redirect("/");
 };
 
 export const illegal = (req, res) => {

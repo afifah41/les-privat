@@ -1,50 +1,50 @@
-@font-face{
-    font-family: Poppins-Regular;
-    src: url("/fonts/Poppins-Regular.ttf");
+@font-face {
+	font-family: Poppins-Regular;
+	src: url("/fonts/Poppins-Regular.ttf");
 }
 
-@font-face{
-    font-family: Poppins-Medium;
-    src: url("/fonts/Poppins-Medium.ttf");
+@font-face {
+	font-family: Poppins-Medium;
+	src: url("/fonts/Poppins-Medium.ttf");
 }
 
-@font-face{
-    font-family: Tienne-Regular;
-    src: url("/fonts/Tienne-Regular.ttf");
+@font-face {
+	font-family: Tienne-Regular;
+	src: url("/fonts/Tienne-Regular.ttf");
 }
 
-@font-face{
-    font-family: Tienne-Bold;
-    src: url("/fonts/Tienne-Bold.ttf");
+@font-face {
+	font-family: Tienne-Bold;
+	src: url("/fonts/Tienne-Bold.ttf");
 }
 
 /* Home CSS */
 /* Home Sebelum Login */
-.home-awal{
-    background-image: url('/images/background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
+.home-awal {
+	background-image: url("/images/assets/background.png");
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
-.home-awal header{
-    display: flex;
-    font-family: Poppins-Regular;
-    height: 120px;
+.home-awal header {
+	display: flex;
+	font-family: Poppins-Regular;
+	height: 120px;
 }
 
-#logo1{
-    width: 200px;
+#logo1 {
+	width: 200px;
 	height: 80.96px;
 	margin-top: 20px;
-    margin-left: 27px;
+	margin-left: 27px;
 }
 
-#home-index{
-    color: white;
-    position: absolute;
-    top: 40px;
-    right: 400px;
-    font-size: 25px;
+#home-index {
+	color: white;
+	position: absolute;
+	top: 40px;
+	right: 400px;
+	font-size: 25px;
 	text-decoration: none;
 }
 
@@ -68,9 +68,9 @@ header a:not(#proficon):hover::after {
 }
 
 .btn-login-popup {
-    position: absolute;
-    top: 35px;
-    right: 80px;
+	position: absolute;
+	top: 35px;
+	right: 80px;
 	width: 130px;
 	height: 50px;
 	background: transparent;
@@ -90,48 +90,47 @@ header a:not(#proficon):hover::after {
 	color: #162938;
 }
 
-#logo2{
-    position: absolute;
-    width: 700px;
-    top: 250px;
-    left: 820px;
+#logo2 {
+	position: absolute;
+	width: 700px;
+	top: 250px;
+	left: 820px;
 }
 
-#text1{
-    position: absolute;
-    top: 260px;
-    left: 50px;
-    width: 750px;
-    font-family: Tienne-Regular;
-    font-size: 50px;
-    color: #00FF38;
+#text1 {
+	position: absolute;
+	top: 260px;
+	left: 50px;
+	width: 750px;
+	font-family: Tienne-Regular;
+	font-size: 50px;
+	color: #00ff38;
 }
 
-#text2{
-    position: absolute;
-    top: 395px;
-    left: 50px;
-    font-family: Tienne-Bold;
-    font-size: 50px;
-    color: #FFDB79;
+#text2 {
+	position: absolute;
+	top: 395px;
+	left: 50px;
+	font-family: Tienne-Bold;
+	font-size: 50px;
+	color: #ffdb79;
 }
 
-#text3{
-    position: absolute;
-    top: 480px;
-    left: 50px;
-    width: 750px;
-    font-family: Poppins-Regular;
-    font-size: 25px;
-    color: black;
-    font-weight: 700;
+#text3 {
+	position: absolute;
+	top: 480px;
+	left: 50px;
+	width: 750px;
+	font-family: Poppins-Regular;
+	font-size: 25px;
+	color: black;
+	font-weight: 700;
 }
-
 
 .wrapper-index {
 	position: relative;
-    top: 50px;
-    left: 550px;
+	top: 50px;
+	left: 550px;
 	width: 400px;
 	height: 440px;
 	background: transparent;
@@ -178,7 +177,7 @@ header a:not(#proficon):hover::after {
 .wrapper-index.active .form-box.register {
 	transition: transform 0.18s ease;
 	transform: translateX(0);
-}   
+}
 
 .wrapper-index .icon-close {
 	position: absolute;
@@ -310,7 +309,7 @@ header a:not(#proficon):hover::after {
 	text-decoration: underline;
 }
 
-select[name='role']{
+select[name="role"] {
 	background: transparent;
 	border: 1px solid black;
 	margin-top: 15px;
@@ -318,93 +317,93 @@ select[name='role']{
 }
 
 /* Home Setelah Login CSS */
-#logo{
+#logo {
 	margin-top: 20px;
-    margin-left: 27px;
-    width: 200px;
-    height: 80.96px;
+	margin-left: 27px;
+	width: 200px;
+	height: 80.96px;
 }
 
-#schedule{
-    color: white;
-    position: absolute;
-    top: 40px;
-    right: 550px;
-    font-size: 25px;
-    text-decoration: none;
+#schedule {
+	color: white;
+	position: absolute;
+	top: 40px;
+	right: 550px;
+	font-size: 25px;
+	text-decoration: none;
 }
 
-#home{
-    color: white;
-    position: absolute;
-    top: 40px;
-    right: 800px;
-    font-size: 25px;
-    text-decoration: none;
+#home {
+	color: white;
+	position: absolute;
+	top: 40px;
+	right: 800px;
+	font-size: 25px;
+	text-decoration: none;
 }
 
-#findclass{
-    color: white;
-    position: absolute;
-    top: 40px;
-    right: 300px;
-    font-size: 25px;
-    text-decoration: none;
+#findclass {
+	color: white;
+	position: absolute;
+	top: 40px;
+	right: 300px;
+	font-size: 25px;
+	text-decoration: none;
 }
 
-#profileicon{
-    width: 80px;
-    position: absolute;
-    top: 20px;
-    right: 80px;
+#profileicon {
+	width: 80px;
+	position: absolute;
+	top: 20px;
+	right: 80px;
 }
 
 /* ==================================================================================================================================== */
 
 /* Fitur CSS */
 /* Schedule CSS */
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-.fitur body{
-    background-color: #E3E6EF;
+.fitur body {
+	background-color: #e3e6ef;
 }
 
-.fitur header{
-    display: flex;
-    font-family: Poppins-Regular;
-    background-image: url('/images/background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 120px;
+.fitur header {
+	display: flex;
+	font-family: Poppins-Regular;
+	background-image: url("/images/assets/background.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 120px;
 }
 
-#logo{
-    margin-top: 20px;
-    margin-left: 27px;
-    width: 200px;
-    height: 80.96px;
+#logo {
+	margin-top: 20px;
+	margin-left: 27px;
+	width: 200px;
+	height: 80.96px;
 }
 
-#schedule{
-    color: white;
-    position: absolute;
-    top: 40px;
-    right: 550px;
-    font-size: 25px;
-    text-decoration: none;
+#schedule {
+	color: white;
+	position: absolute;
+	top: 40px;
+	right: 550px;
+	font-size: 25px;
+	text-decoration: none;
 }
 
-#home{
-    color: white;
-    position: absolute;
-    top: 40px;
-    right: 800px;
-    font-size: 25px;
-    text-decoration: none;
+#home {
+	color: white;
+	position: absolute;
+	top: 40px;
+	right: 800px;
+	font-size: 25px;
+	text-decoration: none;
 }
 
 header a:not(#proficon):after {
@@ -426,204 +425,208 @@ header a:not(#proficon):hover::after {
 	transform: scaleX(1);
 }
 
-#findclass{
-    color: white;
-    position: absolute;
-    top: 40px;
-    right: 300px;
-    font-size: 25px;
-    text-decoration: none;
+#findclass {
+	color: white;
+	position: absolute;
+	top: 40px;
+	right: 300px;
+	font-size: 25px;
+	text-decoration: none;
 }
 
-#profileicon{
-    width: 80px;
-    position: absolute;
-    top: 20px;
-    right: 80px;
+#profileicon {
+	width: 80px;
+	position: absolute;
+	top: 20px;
+	right: 80px;
 }
 
-.week-nav{
-    display: flex;
-    justify-content: center;
+.week-nav {
+	display: flex;
+	justify-content: center;
 }
 
-.nav-btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    border-radius: 100%;
-    background-color: #E3E6EF;
-    width: 30px;
-    height: 30px;
-    margin-left: 30px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.nav-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	border-radius: 100%;
+	background-color: #e3e6ef;
+	width: 30px;
+	height: 30px;
+	margin-left: 30px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
-.nav-btn:hover{
-    background-color: gray;
+.nav-btn:hover {
+	background-color: gray;
 }
 
-.nav-btn img{
-    width: 20px;
+.nav-btn img {
+	width: 20px;
 }
 
-#create{
-    background-color: #00A3FF;
-    font-family: Poppins-Medium;
-    color: white;
-    font-size: 20px;
-    width: 150px;
-    height: 40px;
-    border: none;
-    border-radius: 10px;
-    margin-top: 15px;
+#create {
+	background-color: #00a3ff;
+	font-family: Poppins-Medium;
+	color: white;
+	font-size: 20px;
+	width: 150px;
+	height: 40px;
+	border: none;
+	border-radius: 10px;
+	margin-top: 15px;
 }
 
-#create:hover{
-    cursor: pointer;
-    background-color: #0093e9f1;
+#create:hover {
+	cursor: pointer;
+	background-color: #0093e9f1;
 }
 
-#tabel{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
-    margin-top: 20px;
-    font-family: Poppins-Regular;
+#tabel {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 40px;
+	margin-top: 20px;
+	font-family: Poppins-Regular;
 }
 
-#tabelsiswa{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
-    margin-top: 40px;
-    font-family: Poppins-Regular;
+#tabelsiswa {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 40px;
+	margin-top: 40px;
+	font-family: Poppins-Regular;
 }
 table {
-    border-collapse: collapse;
-}
-  
-th, td {
-    border: 1px solid gray;
-    border-collapse: collapse;
-    height: 50px;
-    border-top: none;
-}
-  
-th:first-child, td:first-child {
-    border-left: none;
-}
-  
-th:last-child, td:last-child {
-    border-right: none;
-}
-  
-tr:last-child th, tr:last-child td {
-    border-bottom: none;
+	border-collapse: collapse;
 }
 
-#jam{
-    width: 50px;
+th,
+td {
+	border: 1px solid gray;
+	border-collapse: collapse;
+	height: 50px;
+	border-top: none;
 }
 
-.hari{
-    width: 200px;
+th:first-child,
+td:first-child {
+	border-left: none;
 }
 
-td{
-    text-align: center;
+th:last-child,
+td:last-child {
+	border-right: none;
+}
+
+tr:last-child th,
+tr:last-child td {
+	border-bottom: none;
+}
+
+#jam {
+	width: 50px;
+}
+
+.hari {
+	width: 200px;
+}
+
+td {
+	text-align: center;
 }
 
 .popup-container {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 9999;
+	justify-content: center;
+	align-items: center;
 }
 
 .popup-box {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    width: 450px;
-    text-align: center;
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	width: 450px;
+	text-align: center;
 }
 
-#harigroup{
-    display: flex;
+#harigroup {
+	display: flex;
 }
 
-#harigroup select{
-    width: 100px;
-    margin-left: 100px;
+#harigroup select {
+	width: 100px;
+	margin-left: 100px;
 }
 
-#tglmulaigroup{
-    display: flex;
+#tglmulaigroup {
+	display: flex;
 }
 
-#tglmulaigroup select{
-    margin-left: 5px;
+#tglmulaigroup select {
+	margin-left: 5px;
 }
 
-#tglmulaigroup p{
-    margin-right: 47.5px;
+#tglmulaigroup p {
+	margin-right: 47.5px;
 }
 
-#tglselesaigroup{
-    display: flex;
+#tglselesaigroup {
+	display: flex;
 }
 
-#tglselesaigroup select{
-    margin-left: 5px;
+#tglselesaigroup select {
+	margin-left: 5px;
 }
 
-#tglselesaigroup p{
-    margin-right: 35px;
+#tglselesaigroup p {
+	margin-right: 35px;
 }
 
-#jammulaigroup{
-    display: flex;
+#jammulaigroup {
+	display: flex;
 }
 
-#jammulaigroup p{
-    margin-right: 81.5px;
+#jammulaigroup p {
+	margin-right: 81.5px;
 }
 
-#durasigroup{
-    display: flex;
+#durasigroup {
+	display: flex;
 }
 
-#durasigroup p{
-    margin-right: 112px;
+#durasigroup p {
+	margin-right: 112px;
 }
 
-.popup-container p{
-    font-family: Poppins-Medium;
-    font-size: 15px;
-    margin-right: 30px;
-    margin-bottom: 20px;
+.popup-container p {
+	font-family: Poppins-Medium;
+	font-size: 15px;
+	margin-right: 30px;
+	margin-bottom: 20px;
 }
 
-.popup-container select{
-    height: 25px;
-    font-family: Poppins-Regular;
+.popup-container select {
+	height: 25px;
+	font-family: Poppins-Regular;
 }
 
 .icon-close-schedule {
 	width: 35px;
 	height: 35px;
-    margin-left: 395px;
-    margin-top: -20;
+	margin-left: 395px;
+	margin-top: -20;
 	background: #202236;
 	font-size: 1.4em;
 	color: whitesmoke;
@@ -631,63 +634,64 @@ td{
 	justify-content: center;
 	align-items: center;
 	border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+	border-bottom-left-radius: 10px;
 	cursor: pointer;
 	z-index: 1;
 }
 
-#upload{
-    font-family: Poppins-Medium;
-    color: white;
-    font-size: 17px;
-    background-color: #00A3FF;
-    border: none;
-    width: 100px;
-    border-radius: 5px;
-    height: 30px;
+#upload {
+	font-family: Poppins-Medium;
+	color: white;
+	font-size: 17px;
+	background-color: #00a3ff;
+	border: none;
+	width: 100px;
+	border-radius: 5px;
+	height: 30px;
 }
 
-#upload:hover{
-    cursor: pointer;
-    background-color: #0093e9f1;
+#upload:hover {
+	cursor: pointer;
+	background-color: #0093e9f1;
 }
 
 .gray-cell {
-    background-color: black;
+	background-color: black;
 }
 
 /* MyClass CSS */
-#tabel-myclass{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
-    margin-top: 40px;
-    font-family: Poppins-Regular;
+#tabel-myclass {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 40px;
+	margin-top: 40px;
+	font-family: Poppins-Regular;
 }
 
 #tabel-myclass table {
-    border-collapse: collapse;
+	border-collapse: collapse;
 }
 
-#tabel-myclass th, #tabel-myclass td{
+#tabel-myclass th,
+#tabel-myclass td {
 	border: 1px solid gray;
-    height: 50px;
+	height: 50px;
 }
 
-#tanggal-myclass{
-    width:200px;
+#tanggal-myclass {
+	width: 200px;
 }
 
-#nama-myclass{
-    width: 300px;
+#nama-myclass {
+	width: 300px;
 }
 
-#kelas-myclass{
-    width: 100px;
+#kelas-myclass {
+	width: 100px;
 }
 
-#waktu-myclass{
-    width: 150px;
+#waktu-myclass {
+	width: 150px;
 }
 
 /* Find Class CSS */
@@ -711,80 +715,80 @@ td{
 	border-radius: 10px;
 }
 
-#textkategori{
-    font-family: Poppins-Medium;
-    color: black;
-    align-self: center;
-    font-size: 20px;
-    margin-top: 50px;
-}
-
-#filter-group select{
-    font-family: Poppins-Regular;
-    font-size: 16px;
-    width: 250px;
-    align-self: center;
-    margin-top: 30px;
-    height: 30px;
-	padding-left: 5px;
-}
-
-#textfilter{
-    font-family: Poppins-Medium;
-    color: black;
-    align-self: center;
-    font-size: 20px;
-    margin-top: 80px;
-}
-
-#textbg{
-    font-family: Poppins-Regular;
-    margin-left: 20px;
-    margin-top: 15px;
-}
-
-#min{
-    font-family: Poppins-Regular;
-    font-size: 16px;
-    width: 250px;
-    align-self: center;
-    margin-top: 5px;
-    margin-bottom: 20px;
-    height: 35px;
-	padding-left: 5px;
-}
-
-#max{
-    font-family: Poppins-Regular;
-    font-size: 16px;
-    width: 250px;
-    align-self: center;
-    height: 35px;
-	padding-left: 5px;
-}
-
-#sort-group{
-    margin-top: 10px;
-}
-
-#submitfilter{
+#textkategori {
 	font-family: Poppins-Medium;
-    font-size: 16px;
+	color: black;
+	align-self: center;
+	font-size: 20px;
+	margin-top: 50px;
+}
+
+#filter-group select {
+	font-family: Poppins-Regular;
+	font-size: 16px;
+	width: 250px;
+	align-self: center;
+	margin-top: 30px;
+	height: 30px;
+	padding-left: 5px;
+}
+
+#textfilter {
+	font-family: Poppins-Medium;
+	color: black;
+	align-self: center;
+	font-size: 20px;
+	margin-top: 80px;
+}
+
+#textbg {
+	font-family: Poppins-Regular;
+	margin-left: 20px;
+	margin-top: 15px;
+}
+
+#min {
+	font-family: Poppins-Regular;
+	font-size: 16px;
+	width: 250px;
+	align-self: center;
+	margin-top: 5px;
+	margin-bottom: 20px;
+	height: 35px;
+	padding-left: 5px;
+}
+
+#max {
+	font-family: Poppins-Regular;
+	font-size: 16px;
+	width: 250px;
+	align-self: center;
+	height: 35px;
+	padding-left: 5px;
+}
+
+#sort-group {
+	margin-top: 10px;
+}
+
+#submitfilter {
+	font-family: Poppins-Medium;
+	font-size: 16px;
 	width: 100px;
 	align-self: center;
-	background-color: #00A3FF;
+	background-color: #00a3ff;
 	border: none;
 	border-radius: 5px;
 	margin-top: 70px;
 	color: white;
 }
 
-#sort-group{
-    font-family: Poppins-Medium;
+#sort-group {
+	font-family: Poppins-Medium;
 	font-size: 16px;
 }
 
-#harga{
+#harga {
 	font-family: Poppins-Regular;
 	font-size: 15px;
 	margin-left: 30px;
@@ -792,7 +796,7 @@ td{
 	padding-left: 5px;
 }
 
-#rating{
+#rating {
 	font-family: Poppins-Regular;
 	font-size: 15px;
 	margin-left: 30px;
@@ -800,25 +804,24 @@ td{
 	padding-left: 5px;
 }
 
-#search{
+#search {
 	font-family: Poppins-Regular;
 	font-size: 14.5px;
 	margin-left: 30px;
 	padding-left: 5px;
 }
 
-#content-group{
-    grid-area: content-group;
-    display: flex;
-    flex-direction: column;
-    border: 2px white;
-    border-radius: 10px;
-    background-color: white;
-    margin-top: 11px;
-    height: 540px;
-    width: 1150px;
+#content-group {
+	grid-area: content-group;
+	display: flex;
+	flex-direction: column;
+	border: 2px white;
+	border-radius: 10px;
+	background-color: white;
+	margin-top: 11px;
+	height: 540px;
+	width: 1150px;
 }
-
 
 /* FindClass2 CSS */
 #container-2 {
@@ -831,13 +834,12 @@ td{
 #side-group {
 	grid-area: side-group;
 	display: grid;
-	grid-template-areas: "profile-group",
-	"comment-group";
+	grid-template-areas: "profile-group", "comment-group";
 	margin-left: 20px;
 	margin-right: 20px;
 }
 
-#profile-group{
+#profile-group {
 	font-family: Poppins-Medium;
 	grid-area: profile-group;
 	grid-area: side-group;
@@ -859,18 +861,18 @@ td{
 	margin-top: 400px;
 }
 
-#content-group-2{
-    grid-area: content-group-2;
-    display: flex;
-    flex-direction: column;
-    border: 2px solid white;
-    border-radius: 10px;
-    background-color: white;
-    height: 585px;
-    width: 1150px;
+#content-group-2 {
+	grid-area: content-group-2;
+	display: flex;
+	flex-direction: column;
+	border: 2px solid white;
+	border-radius: 10px;
+	background-color: white;
+	height: 585px;
+	width: 1150px;
 }
 
-#media-group{
+#media-group {
 	font-family: Poppins-Medium;
 	color: #595959;
 	font-size: 20px;
@@ -879,13 +881,13 @@ td{
 	margin-top: 50px;
 }
 
-#media-group input{
+#media-group input {
 	margin-left: 150px;
 	width: 300px;
 	padding: 5px;
 }
 
-#kelas-group{
+#kelas-group {
 	font-family: Poppins-Medium;
 	color: #595959;
 	font-size: 20px;
@@ -894,7 +896,7 @@ td{
 	margin-top: 30px;
 }
 
-#biaya-group{
+#biaya-group {
 	font-family: Poppins-Medium;
 	color: #595959;
 	font-size: 20px;
@@ -903,7 +905,7 @@ td{
 	margin-top: 30px;
 }
 
-#biaya-group input{
+#biaya-group input {
 	margin-left: 73px;
 	width: 200px;
 	padding: 5px;
@@ -911,528 +913,536 @@ td{
 
 /* Profile CSS */
 #container-profile {
-    display: grid;
-    grid-template-areas: "profilegroup menugroup";
-    grid-template-columns: 1fr 3.5fr;
-    margin-top: 25px;
+	display: grid;
+	grid-template-areas: "profilegroup menugroup";
+	grid-template-columns: 1fr 3.5fr;
+	margin-top: 25px;
 }
 
-#profilegroup{
-    font-family: Poppins-Medium;
-    grid-area: profilegroup;
-    display: flex;
-    flex-direction: column; 
-    margin-left: 50px;
-    height: 585px;
-    width: 250px;
-    border: 2px solid white;
-    background-color: white;
-    border-radius: 10px;
+#profilegroup {
+	font-family: Poppins-Medium;
+	grid-area: profilegroup;
+	display: flex;
+	flex-direction: column;
+	margin-left: 50px;
+	height: 585px;
+	width: 250px;
+	border: 2px solid white;
+	background-color: white;
+	border-radius: 10px;
 }
 
-#profileicon2{
-    align-self: center;
-    margin-top: 20px;
-    width: 150px;
+#foto-profile {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-#btnpilihfoto{
-    align-self: center;
-    margin-top: 10px;
-    width: 100px;
-    height: 27px;
-    width: 87px;
-    border: 1px solid grey;
-    background-color: white;
-    border-radius: 5px;
-    color: #595959;
+#pilih-foto-profile {
+	align-self: center;
+	margin-top: 20px;
+	width: 150px;
+	height: 150px;
+	object-fit: cover; /* Adjusts the image to cover the container */
+	object-position: center; /* Centers the image within the container */
+	cursor: pointer;
+	border-radius: 50%;
 }
 
-#btnpilihfoto:hover {
-    cursor: pointer;
+#btn-upload-foto-profile {
+	text-decoration: none;
+	margin-top: 10px;
+	padding: 5px;
+	width: 50px;
+	height: 27px;
+	font-size: 10px;
+	border-radius: 5px;
+	color: white;
+	background-color: #00a3ff;
+	cursor: pointer;
+	display: none;
 }
 
-#line1{
-    width: 220px;
-    color: #e6eae6;
-    margin-top: 30px;
-    align-self: center;
+#line1 {
+	width: 220px;
+	color: #e6eae6;
+	margin-top: 30px;
+	align-self: center;
 }
 
-#datadiri{
-    margin-top: 40px;
-    text-align: center;
-    text-decoration: none;
-    color: #4d4d4d;
-    font-size: 19px;
+#datadiri {
+	margin-top: 40px;
+	text-align: center;
+	text-decoration: none;
+	color: #4d4d4d;
+	font-size: 19px;
 }
 
-#ubahpassword{
-    margin-top: 15px;
-    text-align: center;
-    text-decoration: none;
-    color: #4d4d4d;
-    font-size: 19px;
+#ubahpassword {
+	margin-top: 15px;
+	text-align: center;
+	text-decoration: none;
+	color: #4d4d4d;
+	font-size: 19px;
 }
 
-#logoutgroup{
-    margin-top: 185px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+#logoutgroup {
+	margin-top: 185px;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
 }
 
-#logouticon{
-    width: 25px;
+#logouticon {
+	width: 25px;
 }
 
-#logout{
-    text-decoration: none;
-    color: #4d4d4d;
-    font-size: 19px;
+#logout {
+	text-decoration: none;
+	color: #4d4d4d;
+	font-size: 19px;
 }
 
-#menugroup{
-    grid-area: menugroup;
-    display: flex;
-    flex-direction: column;
-    border: 2px white;
-    border-radius: 10px;
-    background-color: white;
-    width: 1150px;
+#menugroup {
+	grid-area: menugroup;
+	display: flex;
+	flex-direction: column;
+	border: 2px white;
+	border-radius: 10px;
+	background-color: white;
+	width: 1150px;
 }
 
-#text1-profile{
-    font-family: Poppins-Medium;
-    font-size: 20px;
-    margin-left: 70px;
-    margin-top: 30px;
+#text1-profile {
+	font-family: Poppins-Medium;
+	font-size: 20px;
+	margin-left: 70px;
+	margin-top: 30px;
 }
 
-#text2-profile{
-    font-family: Poppins-Regular;
-    margin-left: 70px;
+#text2-profile {
+	font-family: Poppins-Regular;
+	margin-left: 70px;
 }
 
-#line2{
-    margin-left: 25px;
-    margin-top: 20px;
-    color: #e6eae6;
-    width: 1100px;
+#line2 {
+	margin-left: 25px;
+	margin-top: 20px;
+	color: #e6eae6;
+	width: 1100px;
 }
 
-#formdatadiri{
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
+#formdatadiri {
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
 }
 
-#formdatadiri div:not(#jeniskgroup, #btngroup, #btngroup-guru   ){
-    display: flex;
-    margin-bottom: 30px;
+#formdatadiri div:not(#jeniskgroup, #btngroup, #btngroup-guru) {
+	display: flex;
+	margin-bottom: 30px;
 }
 
-#formdatadiri p{
-    font-family: Poppins-Medium;
-    color: #595959;
-    font-size: 18px;
-    margin-left: 100px;
-    margin-right: 50px;
+#formdatadiri p {
+	font-family: Poppins-Medium;
+	color: #595959;
+	font-size: 18px;
+	margin-left: 100px;
+	margin-right: 50px;
 }
 
-#formdatadiri select{
-    margin-right: 10px;
+#formdatadiri select {
+	margin-right: 10px;
 }
 
-#namagroup{
-    margin-left: 83px;
+#namagroup {
+	margin-left: 83px;
 }
 
-#inputnama{
-    width: 300px;
-    height: 30px;
-    font-size: 16px;
-    padding: 5px;
+#inputnama {
+	width: 300px;
+	height: 30px;
+	font-size: 16px;
+	padding: 5px;
 }
 
-#emailgroup{
-    margin-left: 89px;
+#emailgroup {
+	margin-left: 89px;
 }
 
-#inputemail{
-    height: 30px;
-    font-size: 16px;
-    padding: 5px;
+#inputemail {
+	height: 30px;
+	font-size: 16px;
+	padding: 5px;
 }
 
-#inputnotlp{
-    height: 30px;
-    font-size: 16px;
-    padding: 5px;
+#inputnotlp {
+	height: 30px;
+	font-size: 16px;
+	padding: 5px;
 }
 
-#jeniskgroup{
-    margin-left: 12px;
-    display: flex;
+#jeniskgroup {
+	margin-left: 12px;
+	display: flex;
 }
 
 .gender-options {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 0px;
+	display: flex;
+	gap: 10px;
+	margin-bottom: 0px;
 }
 
 .gender-options label {
-    font-family: Poppins-Regular;
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    margin-right: 25px;
+	font-family: Poppins-Regular;
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	margin-right: 25px;
 }
 
 .gender-options input[type="radio"] {
-    margin-right: 10px;
-    transform: scale(1.5);
+	margin-right: 10px;
+	transform: scale(1.5);
 }
 
-#tgllahirgroup{
-    margin-left: 15px;
+#tgllahirgroup {
+	margin-left: 15px;
 }
 
-#tgllahirgroup select{
-    width: 150px;
-    font-size: 15px;
-    height: 25px;
+#tgllahirgroup select {
+	width: 150px;
+	font-size: 15px;
+	height: 25px;
 }
 
-#alamatgroup{
-    margin-left: 70px;
+#alamatgroup {
+	margin-left: 70px;
 }
 
-#alamatgroup select{
-    width: 151px;
-    font-size: 15px;
-    
+#alamatgroup select {
+	width: 151px;
+	font-size: 15px;
 }
 
-#asalsekolahgroup{
-    margin-left: 21px;
+#asalsekolahgroup {
+	margin-left: 21px;
 }
 
-#inputasalsekolah{
-    height: 30px;
-    font-size: 16px;
-    padding: 5px;
+#inputasalsekolah {
+	height: 30px;
+	font-size: 16px;
+	padding: 5px;
 }
 
-#btngroup{
-    display: flex;
-    margin-bottom: 0;
+#btngroup {
+	display: flex;
+	margin-bottom: 0;
 }
 
-#btnedit{
-    background-color: #00A3FF;
-    font-family: Poppins-Regular;
-    font-weight: bold;
-    color: white;
-    font-size: 20px;
-    width: 150px;
-    margin-left: 288px;
-    border-radius: 10px;
-    border: 0;
-    height: 40px;
-    margin-top: 3px;
+#btnedit {
+	background-color: #00a3ff;
+	font-family: Poppins-Regular;
+	font-weight: bold;
+	color: white;
+	font-size: 20px;
+	width: 150px;
+	margin-left: 288px;
+	border-radius: 10px;
+	border: 0;
+	height: 40px;
+	margin-top: 3px;
 }
 
-#btnsimpan{
-    background-color: #aaa;
-    font-family: Poppins-Regular;
-    font-weight: bold;
-    color: white;
-    font-size: 20px;
-    width: 150px;
-    margin-left: 338px;
-    border-radius: 10px;
-    border: 0;
-    height: 40px;
-    margin-top: 3px;
+#btnsimpan {
+	background-color: #aaa;
+	font-family: Poppins-Regular;
+	font-weight: bold;
+	color: white;
+	font-size: 20px;
+	width: 150px;
+	margin-left: 338px;
+	border-radius: 10px;
+	border: 0;
+	height: 40px;
+	margin-top: 3px;
 }
 
-#ubahpassgroup{
-    grid-area: menugroup;
-    display: flex;
-    flex-direction: column;
-    border: 2px white;
-    border-radius: 10px;
-    background-color: white;
-    width: 1150px;
+#ubahpassgroup {
+	grid-area: menugroup;
+	display: flex;
+	flex-direction: column;
+	border: 2px white;
+	border-radius: 10px;
+	background-color: white;
+	width: 1150px;
 }
 
-#formubahpass{
-    margin-top: 60px;
+#formubahpass {
+	margin-top: 60px;
 }
 
-#formubahpass div{
-    display: flex;
-    margin-bottom: 30px;
+#formubahpass div {
+	display: flex;
+	margin-bottom: 30px;
 }
 
-#formubahpass p{
-    font-family: Poppins-Medium;
-    color: #595959;
-    font-size: 20px;
-    margin-left: 100px;
-    margin-right: 50px;
+#formubahpass p {
+	font-family: Poppins-Medium;
+	color: #595959;
+	font-size: 20px;
+	margin-left: 100px;
+	margin-right: 50px;
 }
 
-#passlama{
-    margin-left: 205px;
+#passlama {
+	margin-left: 205px;
 }
 
-#inputpasslama{
-    margin-left: 123px;
-    font-size: 20px;
-    width: 400px;
-    height: 35px;
-    padding: 5px;
+#inputpasslama {
+	margin-left: 123px;
+	font-size: 20px;
+	width: 400px;
+	height: 35px;
+	padding: 5px;
 }
 
-#passbaru{
-    margin-left: 214px;
+#passbaru {
+	margin-left: 214px;
 }
 
-#inputpassbaru  {
-    margin-left: 133px;
-    font-size: 20px;
-    width: 400px;
-    height: 35px;
-    padding: 5px;
+#inputpassbaru {
+	margin-left: 133px;
+	font-size: 20px;
+	width: 400px;
+	height: 35px;
+	padding: 5px;
 }
 
-#inputkonpassbaru{
-    margin-left: 20px;
-    font-size: 20px;
-    width: 400px;
-    height: 35px;
-    padding: 5px;
+#inputkonpassbaru {
+	margin-left: 20px;
+	font-size: 20px;
+	width: 400px;
+	height: 35px;
+	padding: 5px;
 }
 
-#btnubahpass{
-    background-color: #00A3FF;
-    font-family: Poppins-Regular;
-    font-weight: bold;
-    color: white;
-    font-size: 20px;
-    width: 250px;
-    margin-left: 433px;
-    border-radius: 10px;
-    border: 0;
-    height: 40px;
-    margin-top: 30px;
+#btnubahpass {
+	background-color: #00a3ff;
+	font-family: Poppins-Regular;
+	font-weight: bold;
+	color: white;
+	font-size: 20px;
+	width: 250px;
+	margin-left: 433px;
+	border-radius: 10px;
+	border: 0;
+	height: 40px;
+	margin-top: 30px;
 }
 
-#lupapass{
-    font-family: Poppins-Regular;
-    text-decoration: none;
-    display: flex;
-    margin-left: 435px;
-    margin-top: 15px;
-    color: #2004CC;
+#lupapass {
+	font-family: Poppins-Regular;
+	text-decoration: none;
+	display: flex;
+	margin-left: 435px;
+	margin-top: 15px;
+	color: #2004cc;
 }
 
 .password-wrapper {
-    position: relative;
+	position: relative;
 }
 
 .toggle-password {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    background-image: url(/images/eyeiconhide.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    cursor: pointer;
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+	width: 20px;
+	height: 20px;
+	background-image: url(/images/assets/eyeiconhide.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	cursor: pointer;
 }
 
 .popup-container-profile {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 9999;
+	justify-content: center;
+	align-items: center;
 }
 
 .popup-box-profile {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    width: 450px;
-    text-align: center;
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	width: 450px;
+	text-align: center;
 }
 
 .input-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
+	display: flex;
+	align-items: center;
+	margin-bottom: 30px;
 }
 
 .input-group input {
-    font-family: Poppins-Regular;
-    font-size: 15px;
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+	font-family: Poppins-Regular;
+	font-size: 15px;
+	flex: 1;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
 }
 
 .button-group-profile {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
+	margin-top: 20px;
+	display: flex;
+	justify-content: space-between;
 }
 
 .button-group-profile button[type="button"] {
-    font-family: Poppins-Medium;
-    font-size: 15px;
-    padding: 10px 20px;
-    background-color: #ccc;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+	font-family: Poppins-Medium;
+	font-size: 15px;
+	padding: 10px 20px;
+	background-color: #ccc;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 .button-group-profile button[type="submit"] {
-    font-family: Poppins-Medium;
-    font-size: 15px;
-    padding: 10px 20px;
-    background-color: #00A3FF;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+	font-family: Poppins-Medium;
+	font-size: 15px;
+	padding: 10px 20px;
+	background-color: #00a3ff;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
-h2{
-    font-family: Poppins-Medium;
+h2 {
+	font-family: Poppins-Medium;
 }
 
-.popup-box-profile p{
-    text-align: left;
-    margin-top: 20px;
-    font-family: Poppins-Regular;
-    font-size: 15px;
+.popup-box-profile p {
+	text-align: left;
+	margin-top: 20px;
+	font-family: Poppins-Regular;
+	font-size: 15px;
 }
 
 /* Profile Guru CSS */
-#logoutgroup-guru{
-    margin-top: 142px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+#logoutgroup-guru {
+	margin-top: 142px;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
 }
 
-#tingkatpend{
-    margin-top: 15px;
-    text-align: center;
-    text-decoration: none;
-    color: #4d4d4d;
-    font-size: 19px;
+#tingkatpend {
+	margin-top: 15px;
+	text-align: center;
+	text-decoration: none;
+	color: #4d4d4d;
+	font-size: 19px;
 }
 
-#mapelgroup select{
-    width: 151px;
-    font-size: 15px;
-    margin-left: -0.5px;
+#mapelgroup select {
+	width: 151px;
+	font-size: 15px;
+	margin-left: -0.5px;
 }
 
-#btngroup-guru{
-    display: flex;
+#btngroup-guru {
+	display: flex;
 }
 
-#btnedit-guru{
-    background-color: #00A3FF;
-    font-family: Poppins-Regular;
-    font-weight: bold;
-    color: white;
-    font-size: 20px;
-    width: 150px;
-    margin-left: 288px;
-    border-radius: 10px;
-    border: 0;
-    height: 40px;
+#btnedit-guru {
+	background-color: #00a3ff;
+	font-family: Poppins-Regular;
+	font-weight: bold;
+	color: white;
+	font-size: 20px;
+	width: 150px;
+	margin-left: 288px;
+	border-radius: 10px;
+	border: 0;
+	height: 40px;
 }
 
-#btnsimpan-guru{
-    background-color: #aaa;
-    font-family: Poppins-Regular;
-    font-weight: bold;
-    color: white;
-    font-size: 20px;
-    width: 150px;
-    margin-left: 338px;
-    border-radius: 10px;
-    border: 0;
-    height: 40px;
+#btnsimpan-guru {
+	background-color: #aaa;
+	font-family: Poppins-Regular;
+	font-weight: bold;
+	color: white;
+	font-size: 20px;
+	width: 150px;
+	margin-left: 338px;
+	border-radius: 10px;
+	border: 0;
+	height: 40px;
 }
 
-#tingkatpendgroup{
-    grid-area: menugroup;
-    display: flex;
-    flex-direction: column;
-    border: 2px white;
-    border-radius: 10px;
-    background-color: white;
-    width: 1150px;
+#tingkatpendgroup {
+	grid-area: menugroup;
+	display: flex;
+	flex-direction: column;
+	border: 2px white;
+	border-radius: 10px;
+	background-color: white;
+	width: 1150px;
 }
 
-#formtingkatpend{
-    display: flex;
-    flex-direction: column;
+#formtingkatpend {
+	display: flex;
+	flex-direction: column;
 }
 
-#tingkatgroup{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 60px;
+#tingkatgroup {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 60px;
 }
 
-#tingkatgroup button{
-    font-family: Poppins-Regular;
-    background-color: #aaa;
-    color: white;
-    font-size: 16px;
-    width: 30px;
-    height: 30px;
-    border: none;
-    border-radius: 5px;
-    margin-left: 60px;
-    margin-bottom: 5px;
+#tingkatgroup button {
+	font-family: Poppins-Regular;
+	background-color: #aaa;
+	color: white;
+	font-size: 16px;
+	width: 30px;
+	height: 30px;
+	border: none;
+	border-radius: 5px;
+	margin-left: 60px;
+	margin-bottom: 5px;
 }
 
-#tingkatgroup input{
-    font-size: 15px;
-    width: 150px;
-    padding: 5px;
+#tingkatgroup input {
+	font-size: 15px;
+	width: 150px;
+	padding: 5px;
 }
 
-#tingkat1-6{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 100px;
+#tingkat1-6 {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 100px;
 }
 
-#tingkat7-12{
-    display: flex;
-    justify-content: space-around;
+#tingkat7-12 {
+	display: flex;
+	justify-content: space-around;
 }

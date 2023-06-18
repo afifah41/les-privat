@@ -1,19 +1,33 @@
 <div id="container-profile">
 	<section id="profilegroup">
-		<img
-			src="/images/profileicon2.png"
-			alt="Profile Icon 2"
-			id="profileicon2" />
-		<button type="button" id="btnpilihfoto">Pilih Foto</button>
+		<% let picture = (user.profile_picture == null) ? 'profileicon2.png' :
+		user.profile_picture; %> <% let path = (user.profile_picture == null) ?
+		'assets' : user.role; %>
+		<div id="foto-profile">
+			<img
+				src="/images/<%= path %>/<%= picture %>"
+				alt="Profile Picture"
+				id="pilih-foto-profile" />
+			<a id="btn-upload-foto-profile">Simpan</a>
+		</div>
+
 		<hr id="line1" />
 		<a href="" id="datadiri">Data Diri</a>
 		<a href="" id="ubahpassword">Ubah Password</a>
+		<% if (user.role == 'guru') { %>
 		<a href="" id="tingkatpend">Tingkat Pendidikan</a>
-		<div id="logoutgroup-guru">
-			<a href="/">
-				<img src="/images/logouticon.png" alt="LogOut Icon" id="logouticon" />
+		<% } %>
+		<!-- pemisah ejs -->
+		<% let x = (user.role == 'guru') ? '-guru' : ''; %>
+
+		<div id="logoutgroup<%= x %>">
+			<a href="/profile/logout">
+				<img
+					src="/images/assets/logouticon.png"
+					alt="LogOut Icon"
+					id="logouticon" />
 			</a>
-			<a href="/" id="logout">Logout</a>
+			<a href="/profile/logout" id="logout">Logout</a>
 		</div>
 	</section>
 	<section id="menugroup">
@@ -22,33 +36,41 @@
 			Kelola data diri anda untuk mengontrol, melindungi dan mengamankan akun
 		</p>
 		<hr id="line2" />
-		<form id="formdatadiri" action="/editdatadiriguru" method="post">
+		<form action="/update-profile" method="post" id="formdatadiri">
 			<div id="namagroup">
 				<p id="nama">Nama</p>
-				<input type="text" id="inputnama" name="nama" />
+				<input
+					type="text"
+					id="inputnama"
+					name="nama"
+					value="<%= user.name %>" />
 			</div>
 			<div id="emailgroup">
 				<p id="email">Email</p>
-				<input type="text" id="inputemail" name="email" />
+				<input
+					type="text"
+					id="inputemail"
+					name="email"
+					value="<%= user.email %>" />
 			</div>
 			<div id="notelpgroup">
 				<p id="notlp">Nomor Telepon</p>
-				<input type="text" id="inputnotlp" name="notlp" />
+				<input
+					type="text"
+					id="inputnotlp"
+					name="phone_number"
+					value="<%= user.phone_number %>" />
 			</div>
 			<div id="jeniskgroup">
 				<p id="jenisk">Jenis Kelamin</p>
 				<div class="gender-options">
 					<label>
-						<input type="radio" name="choice" value="option1" />
+						<input type="radio" name="choice" value="Pria" />
 						Laki-laki
 					</label>
 					<label>
-						<input type="radio" name="choice" value="option2" />
+						<input type="radio" name="choice" value="Wanita" />
 						Perempuan
-					</label>
-					<label>
-						<input type="radio" name="choice" value="option3" />
-						Lainnya
 					</label>
 				</div>
 			</div>
@@ -59,29 +81,35 @@
 				<select name="year"></select>
 			</div>
 			<div id="alamatgroup">
-				<p id="alamat">Alamat</p>
-				<select name="Provinsi">
-					<option value="" disabled selected>Provinsi</option>
-				</select>
-				<select name="Kota">
-					<option value="" disabled selected>Kota</option>
-				</select>
-				<select name="Kecamatan">
-					<option value="" disabled selected>Kecamatan</option>
-				</select>
-				<select name="Kelurahan">
-					<option value="" disabled selected>Kelurahan</option>
-				</select>
+				<p id="nama">Nama</p>
+				<input
+					type="text"
+					id="inputnama"
+					name="nama"
+					value="<%= user.name %>" />
 			</div>
+			<div id="alamatgroup">
+				<p id="alamat">Alamat</p>
+			</div>
+			<% if (user.role == 'guru') { %>
 			<div id="mapelgroup">
 				<p id="mapel">Mata Pelajaran</p>
 				<select name="mapel">
 					<option value="" disabled selected>Mata Pelajaran</option>
 				</select>
 			</div>
-			<div id="btngroup-guru">
-				<button type="button" id="btnedit-guru">Edit</button>
-				<button type="submit" id="btnsimpan-guru">Simpan</button>
+			<% } else { %>
+			<div id="asalsekolahgroup">
+				<p id="asalsekolah">Asal Sekolah</p>
+				<input type="text" id="inputasalsekolah" name="asalsekolah" />
+			</div>
+			<% } %>
+
+			<div id="btngroup<%= x %>">
+				<button type="button" id="btnedit<%= x %>">Edit</button>
+				<button type="submit" id="btnsimpan<%= x %>" formmethod="PUT">
+					Simpan
+				</button>
 			</div>
 		</form>
 	</section>
@@ -121,6 +149,7 @@
 			<a href="#" id="lupapass" onclick="openPopup()">Lupa Password?</a>
 		</form>
 	</section>
+	<% if (user.role == 'guru') { %>
 	<section id="tingkatpendgroup">
 		<p id="text1-profile">Tingkat Pendidikan</p>
 		<p id="text2-profile">
@@ -182,6 +211,7 @@
 			</div>
 		</form>
 	</section>
+	<% } %>
 </div>
 <div class="popup-container-profile" id="forgotPasswordPopup">
 	<div class="popup-box-profile">
