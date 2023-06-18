@@ -61,19 +61,21 @@
 					name="phone_number"
 					value="<%= user.phone_number %>" />
 			</div>
+
 			<div id="jeniskgroup">
 				<p id="jenisk">Jenis Kelamin</p>
 				<div class="gender-options">
 					<label>
-						<input type="radio" name="choice" value="Pria" />
-						Laki-laki
+						<input type="radio" name="gender" value="laki-laki" <% if
+						(user.gender === 'laki-laki') { %>checked<% } %> /> Laki-laki
 					</label>
 					<label>
-						<input type="radio" name="choice" value="Wanita" />
-						Perempuan
+						<input type="radio" name="gender" value="perempuan" <% if
+						(user.gender === 'perempuan') { %>checked<% } %> /> Perempuan
 					</label>
 				</div>
 			</div>
+
 			<div id="tgllahirgroup">
 				<p id="tgllahir">Tanggal Lahir</p>
 				<select name="day"></select>
