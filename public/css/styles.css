@@ -358,6 +358,9 @@ select[name="role"] {
 	position: absolute;
 	top: 20px;
 	right: 80px;
+	border-radius: 50%;
+	cursor: pointer;
+	object-fit: cover;
 }
 
 /* ==================================================================================================================================== */
@@ -1532,4 +1535,130 @@ h2 {
 
 #pagination.active {
 	background: #00639d;
+}
+
+
+/* CARD */
+#card-1 {
+	width: 450px;
+	height: 150px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	margin: 20px;
+	overflow: hidden;
+	background-color: #ffffff;
+	font-family: Arial, sans-serif;
+	display: flex;
+}
+
+#card-1-img-top {
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+}
+
+#card-1-body {
+	margin: 5px 10px 10px 10px;
+}
+
+.h-card-1 {
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+#card-1-title {
+	font-size: 18px;
+	color: rgb(57, 56, 56);
+}
+
+#card-1-sub-title {
+	font-size: 15px;
+	color: #666;
+}
+#card-1-price {
+	font-size: 13px;
+	color: #404040;
+}
+
+#card-1-rating {
+	font-size: 13px;
+	color: #666;
+}
+#card-1-rating i {
+	margin-right: 5px;
+	font-size: 15px;
+	color: rgb(255, 215, 0);
+}
+
+#btn-card-1 {
+	display: inline-block;
+	padding: 8px 16px;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	border: none;
+	border-radius: 4px;
+	background-color: #007bff;
+	color: #fff;
+	cursor: pointer;
+}
+
+#btn-card-1:hover {
+	background-color: #0056b3;
+}
+
+#card-2 {
+	width: 290px;
+	height: 370px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	margin: 20px;
+	overflow: hidden;
+	background-color: #ffffff;
+	font-family: Arial, sans-serif;
+	display: flex;
+	flex-direction: column;
+}
+
+#card-2-img-top {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	align-self: center;
+	margin-top: 10px;
+}
+
+#card-2-body {
+	margin: 5px 10px 10px 10px;
+}
+
+.h-card-2 {
+	margin-top: 15px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+#card-2-title {
+	font-size: 20px;
+	color: rgb(57, 56, 56);
+}
+
+#card-2-sub-title {
+	font-size: 17px;
+	color: #666;
+}
+#card-2-alamat {
+	font-size: 15px;
+	color: #404040;
+}
+
+#card-2-rating {
+	font-size: 15px;
+	color: #666;
+}
+#card-2-rating i {
+	margin-right: 5px;
+	font-size: 15px;
+	color: rgb(255, 215, 0);
 }

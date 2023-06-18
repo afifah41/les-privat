@@ -95,6 +95,14 @@ export const findclass = (req, res) => {
 	});
 };
 
+export const teacher_detail = (req, res) => {
+	res.render("teacher-detail", {
+		title: "Detail Guru",
+		layout: "layouts/main",
+		user: req.session.user,
+	});
+}
+
 export const myclass = async (req, res) => {
 	try {
 		const { id_user } = req.session.user;
@@ -342,7 +350,7 @@ export const change_password = async (req, res) => {
 		if (new_password == confirm_new_password) {
 			hashed_password = crypto
 				.createHash("sha256")
-				.update(password)
+				.update(new_password)
 				.digest("base64");
 
 			await User.update(

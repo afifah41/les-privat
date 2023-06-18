@@ -241,7 +241,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	for (let i = 0; i < formElements.length; i++) {
 		const element = formElements[i];
-		if (element.tagName === "INPUT" || element.tagName === "SELECT") {
+		if (
+			element.tagName === "INPUT" ||
+			element.tagName === "SELECT" ||
+			element.tagName === "TEXTAREA" // Include textarea elements
+		) {
 			element.disabled = true;
 		}
 	}
@@ -249,7 +253,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	btnEdit.addEventListener("click", function () {
 		for (let i = 0; i < formElements.length; i++) {
 			const element = formElements[i];
-			if (element.tagName === "INPUT" || element.tagName === "SELECT") {
+			if (
+				element.tagName === "INPUT" ||
+				element.tagName === "SELECT" ||
+				element.tagName === "TEXTAREA" // Include textarea elements
+			) {
 				element.disabled = false;
 			}
 		}

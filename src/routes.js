@@ -11,6 +11,7 @@ import {
 	profile,
 	schedule,
 	findclass,
+	teacher_detail,
 	myclass,
 	upload_picture,
 	update_personal_data,
@@ -29,6 +30,7 @@ router.get("/home", permit("siswa", "guru"), home);
 router.get("/profile", permit("siswa", "guru"), profile);
 router.get("/schedule", permit("siswa", "guru"), schedule);
 router.get("/findclass", permit("siswa", "guru"), findclass);
+router.get("/find-class/:id_teacher", permit("siswa"), teacher_detail);
 router.get("/myclass", permit("siswa", "guru"), myclass);
 router.get("/profile/logout", permit("siswa", "guru"), logout);
 router.post("/profile", update_personal_data);
