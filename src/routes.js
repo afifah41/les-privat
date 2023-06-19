@@ -1,6 +1,6 @@
 import express from "express";
-import { body } from "express-validator";
 import permit from "./middleware/authorization.js";
+
 import {
 	login_register,
 	validationRules,
@@ -17,6 +17,7 @@ import {
 	update_personal_data,
 	change_password,
 	createSchedule,
+	show_all_teachers,
 	illegal,
 } from "./middleware/controller.js";
 
@@ -29,7 +30,8 @@ router.post("/login", validationRules(), login);
 router.get("/home", permit("siswa", "guru"), home);
 router.get("/profile", permit("siswa", "guru"), profile);
 router.get("/schedule", permit("siswa", "guru"), schedule);
-router.get("/findclass", permit("siswa", "guru"), findclass);
+router.get("/findclass", permit("siswa"), show_all_teachers);
+// router.get("/findclass", permit("siswa", "guru"), findclass);
 router.get("/find-class/:id_teacher", permit("siswa"), teacher_detail);
 router.get("/myclass", permit("siswa", "guru"), myclass);
 router.get("/profile/logout", permit("siswa", "guru"), logout);

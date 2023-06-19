@@ -355,6 +355,7 @@ select[name="role"] {
 
 #profileicon {
 	width: 80px;
+	height: 80px;
 	position: absolute;
 	top: 20px;
 	right: 80px;
@@ -850,101 +851,15 @@ td {
 #content-group {
 	grid-area: content-group;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	flex-wrap: wrap; /* Add this line to allow cards to wrap */
+	justify-content: flex-start; 
 	border: 2px white;
 	border-radius: 10px;
 	background-color: white;
 	margin-top: 11px;
 	height: 540px;
 	width: 1150px;
-}
-
-/* FindClass2 CSS */
-#container-2 {
-	display: grid;
-	grid-template-areas: "side-group content-group-2";
-	grid-template-columns: 1fr 3.5fr;
-	margin-top: 25px;
-}
-
-#side-group {
-	grid-area: side-group;
-	display: grid;
-	grid-template-areas: "profile-group", "comment-group";
-	margin-left: 20px;
-	margin-right: 20px;
-}
-
-#profile-group {
-	font-family: Poppins-Medium;
-	grid-area: profile-group;
-	grid-area: side-group;
-	height: 370px;
-	width: 290px;
-	border: 2px solid white;
-	background-color: white;
-	border-radius: 10px;
-}
-
-#comment-group {
-	font-family: Poppins-Medium;
-	grid-area: comment-group;
-	height: 185px;
-	width: 290px;
-	border: 2px solid white;
-	background-color: white;
-	border-radius: 10px;
-	margin-top: 400px;
-}
-
-#content-group-2 {
-	grid-area: content-group-2;
-	display: flex;
-	flex-direction: column;
-	border: 2px solid white;
-	border-radius: 10px;
-	background-color: white;
-	height: 585px;
-	width: 1150px;
-}
-
-#media-group {
-	font-family: Poppins-Medium;
-	color: #595959;
-	font-size: 20px;
-	display: flex;
-	margin-left: 70px;
-	margin-top: 50px;
-}
-
-#media-group input {
-	margin-left: 150px;
-	width: 300px;
-	padding: 5px;
-}
-
-#kelas-group {
-	font-family: Poppins-Medium;
-	color: #595959;
-	font-size: 20px;
-	display: flex;
-	margin-left: 70px;
-	margin-top: 30px;
-}
-
-#biaya-group {
-	font-family: Poppins-Medium;
-	color: #595959;
-	font-size: 20px;
-	display: flex;
-	margin-left: 70px;
-	margin-top: 30px;
-}
-
-#biaya-group input {
-	margin-left: 73px;
-	width: 200px;
-	padding: 5px;
 }
 
 /* Profile CSS */
@@ -958,15 +873,32 @@ td {
 #profilegroup {
 	font-family: Poppins-Medium;
 	grid-area: profilegroup;
-	display: flex;
 	flex-direction: column;
 	margin-left: 50px;
 	height: 585px;
 	width: 250px;
 	border: 2px solid white;
 	background-color: white;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 	border-radius: 10px;
+	display: flex;
+	overflow: hidden;
+	flex-direction: column;
+	font-family: Arial, sans-serif;
 }
+/* #card-2 {
+	width: 290px;
+	height: 370px;
+	border: 1px solid #ccc;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	margin: 20px;
+	overflow: hidden;
+	background-color: #ffffff;
+	font-family: Arial, sans-serif;
+	display: flex;
+	flex-direction: column;
+} */
 
 #foto-profile {
 	display: flex;
@@ -1537,8 +1469,7 @@ h2 {
 	background: #00639d;
 }
 
-
-/* CARD */
+/* CARD
 #card-1 {
 	width: 450px;
 	height: 150px;
@@ -1606,11 +1537,13 @@ h2 {
 
 #btn-card-1:hover {
 	background-color: #0056b3;
-}
+} */
 
-#card-2 {
-	width: 290px;
-	height: 370px;
+
+
+#card-1 {
+	width: 450px;
+	height: 150px;
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -1619,15 +1552,163 @@ h2 {
 	background-color: #ffffff;
 	font-family: Arial, sans-serif;
 	display: flex;
+}
+
+#card-1-img-top {
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+}
+
+#card-1-body {
+	margin: 5px 10px 10px 10px;
+}
+
+.h-card-1 {
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+#card-1-title {
+	font-size: 18px;
+	color: rgb(57, 56, 56);
+}
+
+#card-1-sub-title {
+	font-size: 15px;
+	color: #666;
+}
+
+#card-1-price {
+	font-size: 13px;
+	color: #404040;
+}
+
+#card-1-rating {
+	font-size: 13px;
+	color: #666;
+}
+
+#card-1-rating i {
+	margin-right: 5px;
+	font-size: 15px;
+	color: rgb(255, 215, 0);
+}
+
+#btn-card-1 {
+	display: inline-block;
+	padding: 8px 16px;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	border: none;
+	border-radius: 4px;
+	background-color: #007bff;
+	color: #fff;
+	cursor: pointer;
+}
+
+#btn-card-1:hover {
+	background-color: #0056b3;
+}
+
+/* FindClass2 CSS */
+#container-2 {
+	display: grid;
+	grid-template-areas: "side-group content-group-2";
+	grid-template-columns: 1fr 3.5fr;
+	margin-top: 25px;
+}
+
+#side-group {
+	grid-area: side-group;
+	display: grid;
+	grid-template-areas: "profile-group", "comment-group";
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#profile-group {
+	font-family: Poppins-Medium;
+	grid-area: profile-group;
+	grid-area: side-group;
+	height: 370px;
+	width: 290px;
+	border: 2px solid white;
+	background-color: white;
+	border-radius: 10px;
+	padding: 20px
+}
+
+#comment-group {
+	font-family: Poppins-Medium;
+	grid-area: comment-group;
+	height: 185px;
+	width: 290px;
+	border: 2px solid white;
+	background-color: white;
+	border-radius: 10px;
+	margin-top: 400px;
+}
+
+#content-group-2 {
+	grid-area: content-group-2;
+	display: flex;
 	flex-direction: column;
+	border: 2px solid white;
+	border-radius: 10px;
+	background-color: white;
+	height: 585px;
+	width: 1150px;
+}
+
+#media-group {
+	font-family: Poppins-Medium;
+	color: #595959;
+	font-size: 20px;
+	display: flex;
+	margin-left: 70px;
+	margin-top: 50px;
+}
+
+#media-group input {
+	margin-left: 150px;
+	width: 300px;
+	padding: 5px;
+}
+
+#kelas-group {
+	font-family: Poppins-Medium;
+	color: #595959;
+	font-size: 20px;
+	display: flex;
+	margin-left: 70px;
+	margin-top: 30px;
+}
+
+#biaya-group {
+	font-family: Poppins-Medium;
+	color: #595959;
+	font-size: 20px;
+	display: flex;
+	margin-left: 70px;
+	margin-top: 30px;
+}
+
+#biaya-group input {
+	margin-left: 73px;
+	width: 200px;
+	padding: 5px;
 }
 
 #card-2-img-top {
 	width: 120px;
 	height: 120px;
 	border-radius: 50%;
-	align-self: center;
-	margin-top: 10px;
+	object-fit: cover;
+	display: block;
+	margin: 0 auto;
 }
 
 #card-2-body {

@@ -248,6 +248,74 @@ export const dataJadwalSiswa = sequelize.define(
 	}
 );
 
+export const ViewTeacherSubject = sequelize.define(
+	"view_teacher_subject",
+	{
+		id_teacher: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+		},
+		teacher_name: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		id_subject: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+		},
+		subject_name: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		price: {
+			type: DataTypes.FLOAT,
+			allowNull: false,
+		},
+	},
+	{
+		tableName: "view_teacher_subject",
+		timestamps: false,
+	}
+);
+
+
+export const ViewTeacherInfo = sequelize.define(
+	"view_teacher_info",
+	{
+		id: {
+			// Add the 'id' column definition
+			type: DataTypes.INTEGER,
+			primaryKey: true,
+			autoIncrement: true,
+		},
+		id_teacher: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+		},
+		profile_picture: {
+			type: DataTypes.STRING,
+			allowNull: true,
+		},
+		teacher_name: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		subject_name: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		min_price: {
+			type: DataTypes.FLOAT,
+			allowNull: false,
+		},
+	},
+	{
+		tableName: "view_teacher_info",
+		timestamps: false,
+	}
+);
+
+
 TCS.belongsTo(Teacher, {
 	foreignKey: "id_teacher",
 });

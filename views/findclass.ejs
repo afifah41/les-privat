@@ -42,17 +42,21 @@
 			</select>
 			<input type="text" id="search" placeholder="Search..." name="search" />
 		</section>
-		<section id="content-group">
+		<div id="content-group">
+			<% jsonData.forEach(function(item) { %>
 			<div id="card-1">
-				<img src="image.jpeg" id="card-1-img-top" alt="..." />
+				<img
+					src="public/images/guru/<%= item.profile_picture %>"
+					id="card-1-img-top"
+					alt="..." />
 				<div id="card-1-body">
-					<h4 id="card-1-title">Angely Yoranita</h4>
-					<h4 id="card-1-sub-title">Matematika</h4>
-					<h4 id="card-1-price">Rp. 325.000</h4>
-					<h4 id="card-1-rating"><i id="fa-solid fa-star"></i>4.5</h4>
-					<a href="/find-class/:id_teacher" id="btn-card-1">Go somewhere</a>
+					<h4 id="card-1-title"><%= item.teacher_name %></h4>
+					<h4 id="card-1-sub-title"><%= item.subject_name %></h4>
+					<h4 id="card-1-price">Rp. <%= item.min_price %></h4>
+					<a href="#" id="btn-card-1">Go somewhere</a>
 				</div>
 			</div>
-		</section>
+			<% }); %>
+		</div>
 	</div>
 </div>

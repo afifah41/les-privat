@@ -1,5 +1,6 @@
-import { connection } from "./connection.js";
+// import { connection } from "./connection.js";
 import { body, validationResult } from "express-validator";
+import { ViewTeacherSubject } from "../database/models.js";
 import crypto from "crypto";
 import fs from "fs";
 import path from "path";
@@ -13,6 +14,7 @@ import {
 	Registration,
 	TCS,
 	dataJadwalSiswa,
+	ViewTeacherInfo,
 } from "../database/models.js";
 
 export const login_register = (req, res) => {
@@ -101,7 +103,7 @@ export const teacher_detail = (req, res) => {
 		layout: "layouts/main",
 		user: req.session.user,
 	});
-}
+};
 
 export const myclass = async (req, res) => {
 	try {
@@ -403,6 +405,40 @@ export const logout = (req, res) => {
 	req.session.destroy();
 
 	res.redirect("/");
+};
+
+export const show_all_teachers = async (req, res) => {
+	try {
+		const viewData = await ViewTeacherInfo.findAll({
+			attributes: [
+				"id_teacher",
+				"profile_picture",
+				"teacher_name",
+				"subject_name",
+				"min_price",
+			],
+		}); // Retrieve selected columns from the view
+
+		// Map the view data to the desired JSON format
+		const jsonData = viewData.map((item) => ({
+			id_teacher: item.id_teacher,
+			profile_picture: item.profile_picture,
+			teacher_name: item.teacher_name,
+			subject_name: item.subject_name,
+			min_price: item.min_price,
+		}));
+
+		// Render the "findclass" view with the provided data
+		res.render("findclass", {
+			title: "Find Class",
+			layout: "layouts/main",
+			user: req.session.user,
+			jsonData, 
+		});
+	} catch (error) {
+		console.log("Error occurred while fetching data:", error);
+		res.status(500).json({ error: "An error occurred while fetching data" });
+	}
 };
 
 export const illegal = (req, res) => {
