@@ -58,5 +58,14 @@
 			</div>
 			<% }); %>
 		</div>
+
+		<!-- Pagination links -->
+		<div id="pagination">
+			<% if (currentPage > 1) { %>
+			<a href="/findclass?page=<%= currentPage - 1 %>">Previous</a>
+			<% } %> <% if (currentPage < totalPages) { %>
+			<a href="/findclass?page=<%= currentPage + 1 %>">Next</a>
+			<% } %>
+		</div>
 	</div>
 </div>

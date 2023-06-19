@@ -19,6 +19,7 @@ import {
 	createSchedule,
 	show_all_teachers,
 	illegal,
+	update_TCS,
 } from "./middleware/controller.js";
 
 const router = express.Router();
@@ -31,11 +32,11 @@ router.get("/home", permit("siswa", "guru"), home);
 router.get("/profile", permit("siswa", "guru"), profile);
 router.get("/schedule", permit("siswa", "guru"), schedule);
 router.get("/findclass", permit("siswa"), show_all_teachers);
-// router.get("/findclass", permit("siswa", "guru"), findclass);
 router.get("/find-class/:id_teacher", permit("siswa"), teacher_detail);
 router.get("/myclass", permit("siswa", "guru"), myclass);
 router.get("/profile/logout", permit("siswa", "guru"), logout);
 router.post("/profile", update_personal_data);
+router.post("/profile/tcs", update_TCS);
 router.put("/update-foto", upload_picture);
 router.post("/ubah-password", change_password);
 router.post("/bikinjadwal", permit("guru"), createSchedule);

@@ -76,7 +76,9 @@
 			</div>
 			<div id="alamatgroup">
 				<p id="alamat">Alamat</p>
-				<textarea id="inputalamat" cols="30" rows="10" name="address"><%= user.address %></textarea>
+				<textarea id="inputalamat" cols="30" rows="10" name="address">
+<%= user.address %></textarea
+				>
 			</div>
 
 			<% if (user.role == 'siswa') { %>
@@ -149,7 +151,7 @@
 			Pilih tingkat - tingkat pendidikan yang ingin anda ajar
 		</p>
 		<hr id="line2" />
-		<form id="formtingkatpend" action="/tingkatpend" method="post">
+		<form id="formtingkatpend" action="/profile" method="post">
 			<div id="mapelgroup">
 				<p id="mapel">Mata Pelajaran</p>
 				<select name="mapel">
@@ -158,23 +160,23 @@
 			</div>
 			<div id="tingkat1-6">
 				<div id="tingkatgroup">
-					<button type="button" id="tingkat">1</button>
+					<button type="button" id="tingkat" name="sd1">1</button>
 					<input type="text" id="biaya" placeholder="Rp." />
 				</div>
 				<div id="tingkatgroup">
-					<button type="button" id="tingkat">2</button>
+					<button type="button" id="tingkat" name="sd2">2</button>
 					<input type="text" id="biaya" placeholder="Rp." />
 				</div>
 				<div id="tingkatgroup">
-					<button type="button" id="tingkat">3</button>
+					<button type="button" id="tingkat" name="sd3">3</button>
 					<input type="text" id="biaya" placeholder="Rp." />
 				</div>
 				<div id="tingkatgroup">
-					<button type="button" id="tingkat">4</button>
+					<button type="button" id="tingkat" name="sd4">4</button>
 					<input type="text" id="biaya" placeholder="Rp." />
 				</div>
 				<div id="tingkatgroup">
-					<button type="button" id="tingkat">5</button>
+					<button type="button" id="tingkat" name>5</button>
 					<input type="text" id="biaya" placeholder="Rp." />
 				</div>
 				<div id="tingkatgroup">
@@ -208,6 +210,7 @@
 					<input type="text" id="biaya" placeholder="Rp." />
 				</div>
 			</div>
+			<button type="submit" id="btnsimpan-tk">Simpan</button>
 		</form>
 	</section>
 	<% } %>

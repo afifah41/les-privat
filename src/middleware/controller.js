@@ -368,6 +368,44 @@ export const change_password = async (req, res) => {
 	}
 };
 
+export const update_TCS = async (req, res) => {
+	try {
+		const id_user = req.session.user.id_user;
+		const { old_password, new_password, confirm_new_password } = req.body;
+
+		let hashed_password = crypto
+			.createHash("sha256")
+			.update(old_password)
+			.digest("base64");
+
+		const user = await User.findOne({
+			where: { id_user, password: hashed_password },
+		});
+
+		if (!user) {
+			res.status(401).send("Password salah!");
+			return;
+		}
+
+		if (new_password == confirm_new_password) {
+			hashed_password = crypto
+				.createHash("sha256")
+				.update(new_password)
+				.digest("base64");
+
+			await User.update(
+				{ password: hashed_password },
+				{ where: { id_user: id_user } }
+			);
+		}
+
+		res.redirect("/profile");
+	} catch (error) {
+		console.error(error);
+		res.status(500).send("Terjadi kesalahan saat update password");
+	}
+};
+
 export const teacher_subject_class = async (req, res) => {
 	try {
 		const id_teacher = req.session.user.id;
@@ -409,7 +447,11 @@ export const logout = (req, res) => {
 
 export const show_all_teachers = async (req, res) => {
 	try {
-		const viewData = await ViewTeacherInfo.findAll({
+		const page = parseInt(req.query.page) || 1; // Get the current page number from the query parameter
+		const pageSize = 10; // Number of items per page
+		const offset = (page - 1) * pageSize; // Calculate the offset
+
+		const viewData = await ViewTeacherInfo.findAndCountAll({
 			attributes: [
 				"id_teacher",
 				"profile_picture",
@@ -417,10 +459,14 @@ export const show_all_teachers = async (req, res) => {
 				"subject_name",
 				"min_price",
 			],
-		}); // Retrieve selected columns from the view
+			limit: pageSize,
+			offset: offset,
+		});
 
-		// Map the view data to the desired JSON format
-		const jsonData = viewData.map((item) => ({
+		const totalItems = viewData.count;
+		const totalPages = Math.ceil(totalItems / pageSize);
+
+		const jsonData = viewData.rows.map((item) => ({
 			id_teacher: item.id_teacher,
 			profile_picture: item.profile_picture,
 			teacher_name: item.teacher_name,
@@ -428,12 +474,13 @@ export const show_all_teachers = async (req, res) => {
 			min_price: item.min_price,
 		}));
 
-		// Render the "findclass" view with the provided data
 		res.render("findclass", {
 			title: "Find Class",
 			layout: "layouts/main",
 			user: req.session.user,
-			jsonData, 
+			jsonData,
+			currentPage: page,
+			totalPages,
 		});
 	} catch (error) {
 		console.log("Error occurred while fetching data:", error);
